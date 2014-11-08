@@ -9,38 +9,67 @@
 #import "LoginViewController.h"
 
 #import "AppCommunication.h"
-
+#import <CoreLocation/CoreLocation.h>
 @interface LoginViewController ()
 - (IBAction)isBuyer:(id)sender;
 - (IBAction)isSeller:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *bizNameTextField;
 
 @end
 
 @implementation LoginViewController
 
+- (void)startStandardUpdates
+{
+    // Create the location manager if this object does not
+    // already have one.
+    if (nil == [AppCommunication sharedManager].locationManager)
+    {
+        [AppCommunication sharedManager].locationManager = [[CLLocationManager alloc] init];
+        [[AppCommunication sharedManager].locationManager requestAlwaysAuthorization];
+    }
+
+    
+    [AppCommunication sharedManager].locationManager.delegate = self;
+    [AppCommunication sharedManager].locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    
+    // Set a movement threshold for new events.
+    [AppCommunication sharedManager].locationManager.distanceFilter = 500; // meters
+    
+    [[AppCommunication sharedManager].locationManager startUpdatingLocation];
+}
+
+
+- (void) locationManager:(CLLocationManager *)manager
+        didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
+    NSLog(@"Failed to get location!:(");
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    
+    CLLocation *newLocation = [locations lastObject];
+    
+
+            NSString *latitude, *longitude, *state, *country;
+            
+            latitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
+            longitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
+    [[AppCommunication sharedManager] strLocationMakerWithLat:newLocation.coordinate.latitude withLongi:newLocation.coordinate.longitude];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self startStandardUpdates];
+    
 }
 -(void)createFBLoginl
 {
     //For Some Reason App crashes without this
     FBLoginView *loginView = [[FBLoginView alloc] init];
-}
--(void)getFBInfo
-{
-    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        if (!error) {
-            // Success! Include your code to handle the results here
-            NSLog(@"user info: %@", result);
-            [AppCommunication sharedManager].myFBID = [result objectForKey:@"id"];
-            [AppCommunication sharedManager].myFBName = [result objectForKey:@"first_name"];
-        } else {
-            // An error occurred, we need to handle the error
-            // See: https://developers.facebook.com/docs/ios/errors
-        }
-    }];
-
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
@@ -51,7 +80,7 @@
     //call the singleton for string data
     [AppCommunication sharedManager].myFBID = user.objectID;
     [AppCommunication sharedManager].myFBName = user.name;
-    
+
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
@@ -140,12 +169,68 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)createSellerAccount
+{
+    if(![self.bizNameTextField.text isEqualToString:@""])
+    {
+        
+    }
+}
+-(void)serverCreateSellerAccount
+{
 
+        NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/seller/create/%@/%@",
+                              [AppCommunication sharedManager].myFBID,
+                              [self stringFix:self.bizNameTextField.text]];
+        NSURL *url = [NSURL URLWithString:fixedUrl];
+        // Request
+        NSMutableURLRequest *request =
+        [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+        // Request type
+        [request setHTTPMethod:@"GET"];
+        // Session
+        NSURLSession *urlSession = [NSURLSession sharedSession];
+        // Data Task Block
+        NSURLSessionDataTask *dataTask =
+        [urlSession dataTaskWithRequest:request
+                      completionHandler:^(NSData *data,
+                                          NSURLResponse *response,
+                                          NSError *error)
+         {
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSInteger responseStatusCode = [httpResponse statusCode];
+             
+             if (responseStatusCode == 200 && data)
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^(void)
+                                {
+
+                                    NSLog(@"Account Made Successfully");
+                                    
+                                }); // Main Queue dispatch block
+                 
+                 // do something with this data
+                 // if you want to update UI, do it on main queue
+             }
+             else
+             {
+                 // error handling
+             }
+         }]; // Data Task Block
+        [dataTask resume];
+        
+    
+}
 - (IBAction)isBuyer:(id)sender {
     [self performSegueWithIdentifier:@"buyer" sender:self];
 }
 
 - (IBAction)isSeller:(id)sender {
     [self performSegueWithIdentifier:@"seller" sender:self];
+}
+-(NSString*)stringFix:(NSString*) str
+{
+    NSString* temp = [str stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    return temp;
 }
 @end

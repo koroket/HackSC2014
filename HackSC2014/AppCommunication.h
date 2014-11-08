@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreLocation/CoreLocation.h>
 @interface AppCommunication : NSObject
 + (instancetype)sharedManager;
+-(NSString*)strLocationMakerWithLat:(float)lat withLongi:(float)longi;
+
 @property (nonatomic, strong) NSString* myFBName;
 @property (nonatomic, strong) NSString* myFBID;
 @property (nonatomic, strong) NSMutableArray* sellerMyItems;
+@property (nonatomic, strong) CLLocationManager* locationManager;
 @end

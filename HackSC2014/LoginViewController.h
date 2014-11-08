@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
-@interface LoginViewController : UIViewController<FBLoginViewDelegate>
+#import <CoreLocation/CoreLocation.h>
+@interface LoginViewController : UIViewController<FBLoginViewDelegate,CLLocationManagerDelegate>
 
 @end
