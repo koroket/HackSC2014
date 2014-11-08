@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     [AppCommunication sharedManager].buyerMySellers = [NSMutableArray array];
     [self getMySellers];
     // Uncomment the following line to preserve selection between presentations.

@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     [AppCommunication sharedManager].sellerMyItems = [NSMutableArray array];
     // Do any additional setup after loading the view.
 }
