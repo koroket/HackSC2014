@@ -189,7 +189,7 @@
             </objects>
             <point key="canvasLocation" x="-932" y="1169"/>
         </scene>
-        <!--My Items-->
+        <!--Seller Items Table View Controller-->
         <scene sceneID="p92-hn-cB8">
             <objects>
                 <tableViewController id="t7s-B6-CJW" customClass="SellerItemsTableViewController" sceneMemberID="viewController">
@@ -252,7 +252,18 @@
                             <outlet property="delegate" destination="t7s-B6-CJW" id="6uH-pG-R7c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Items" id="P1t-9Q-Tde">
+                    <navigationItem key="navigationItem" id="P1t-9Q-Tde">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bke-xQ-nWS">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Upload">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="uploadItemSet:" destination="t7s-B6-CJW" eventType="touchUpInside" id="tzD-g0-6ni"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SVk-nf-cr5">
                             <connections>
                                 <action selector="addCategory:" destination="t7s-B6-CJW" id="A1u-T5-YKD"/>

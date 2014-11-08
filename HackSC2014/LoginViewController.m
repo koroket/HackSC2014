@@ -47,11 +47,10 @@
                             user:(id<FBGraphUser>)user
 {
 
-//    self.nameLabel.text = user.name;
-//    
-//    //call the singleton for string data
-//    [NetworkCommunication sharedManager].stringFBUserId = user.objectID;
-//    [NetworkCommunication sharedManager].stringFBUserName = user.name;
+    
+    //call the singleton for string data
+    [AppCommunication sharedManager].myFBID = user.objectID;
+    [AppCommunication sharedManager].myFBName = user.name;
     
 }
 

@@ -8,8 +8,9 @@
 
 #import "SellerItemsTableViewController.h"
 #import "AppCommunication.h"
-#import "SellerItem.h"
+//#import "SellerItem.h"
 @interface SellerItemsTableViewController ()
+- (IBAction)uploadItemSet:(id)sender;
 - (IBAction)addCategory:(id)sender;
 @end
 
@@ -44,7 +45,7 @@
     [cell.textLabel removeFromSuperview];
     
     UITextField *nameLabel = (UITextField *)[cell viewWithTag:1];
-    nameLabel.text = ((SellerItem*)[AppCommunication sharedManager].sellerMyItems[indexPath.row]).name;
+    nameLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"name"];
     [nameLabel addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingChanged];
     
     
@@ -54,7 +55,7 @@
     
     UIButton *cellButton = (UIButton *)[cell viewWithTag:3];
     
-    if([((SellerItem*)[AppCommunication sharedManager].sellerMyItems[indexPath.row]).itemType isEqualToString:@"Category"])
+    if([((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"itemType"] isEqualToString:@"Category"])
     {
         priceLabel.alpha = 0.0;
         priceLabel.userInteractionEnabled = false;
@@ -66,7 +67,7 @@
     }
     else
     {
-        priceLabel.text = ((SellerItem*)[AppCommunication sharedManager].sellerMyItems[indexPath.row]).price;
+        priceLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"price"];
         [cellButton setTitle:@"Up" forState:UIControlStateNormal];
         [cellButton addTarget:self
                        action:@selector(moveCellUp:)
@@ -80,11 +81,11 @@
 }
 -(void)addItem
 {
-    SellerItem* newSellerItem = [[SellerItem alloc] init];
-    newSellerItem.itemType = @"Item";
-    newSellerItem.name = @"";
-    newSellerItem.price = @"";
-    [[AppCommunication sharedManager].sellerMyItems addObject:newSellerItem];
+    NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
+    newItem[@"itemType"] = @"Item";
+    newItem[@"name"] = @"";
+    newItem[@"price"] = @"";
+    [[AppCommunication sharedManager].sellerMyItems addObject:newItem];
     [self.tableView reloadData];
 }
 -(void)moveCellUp:(id)sender
@@ -94,7 +95,7 @@
     UITableViewCell* cell = (UITableViewCell*)senderButton.superview.superview;
     NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
     
-    if([((SellerItem*)[AppCommunication sharedManager].sellerMyItems[indexPath.row-1]).itemType isEqualToString:@"Item"])
+    if([((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row-1])[@"itemType"] isEqualToString:@"Item"])
     {
 
         [[AppCommunication sharedManager].sellerMyItems exchangeObjectAtIndex:indexPath.row-1 withObjectAtIndex:indexPath.row];
@@ -110,7 +111,7 @@
     
     if (field != nil) {
 
-           ((SellerItem*)[AppCommunication sharedManager].sellerMyItems[indexPath.row]).name  = field.text;
+           ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"name"]  = field.text;
 
     }
 }
@@ -123,7 +124,7 @@
     
     if (field != nil) {
         
-        ((SellerItem*)[AppCommunication sharedManager].sellerMyItems[indexPath.row]).price  = field.text;
+        ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"price"]  = field.text;
         
     }
 }
@@ -170,12 +171,73 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)updateItemSet
+{
+    //URL
+    NSString *fixedURL = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/seller/itemSet/%@",
+                          [AppCommunication sharedManager].myFBID
+                          ];
+    NSURL *url = [NSURL URLWithString:fixedURL];
+    
+    //Session
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    //Request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    request.HTTPMethod = @"PUT";
+    
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:[AppCommunication sharedManager].sellerMyItems forKey:@"itemSet"];
+    
+    //Error Handling
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                   options:kNilOptions
+                                                     error:&error];
+    if (!error)
+    {
+        //Upload
+        NSURLSessionUploadTask *uploadTask =
+        [session uploadTaskWithRequest:request
+                              fromData:data
+                     completionHandler:^(NSData *data,
+                                         NSURLResponse *response,
+                                         NSError *error)
+         {
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSInteger responseStatusCode = [httpResponse statusCode];
+             if (responseStatusCode == 200 && data)
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^(void)
+                                {
+
+                                });//Dispatch main queue block
+             }//if
+             else
+             {
+                 NSLog(@"Sending to individuals failed");
+             }
+         }];//upload task Block
+        [uploadTask resume];
+        NSLog(@"Connected to server");
+    }
+    else
+    {
+        NSLog(@"Cannot connect to server");
+    }
+}
+- (IBAction)uploadItemSet:(id)sender {
+    [self updateItemSet];
+}
 
 - (IBAction)addCategory:(id)sender {
-    SellerItem* newSellerItem = [[SellerItem alloc] init];
-    newSellerItem.itemType = @"Category";
-    newSellerItem.name = @"";
-    [[AppCommunication sharedManager].sellerMyItems addObject:newSellerItem];
+    NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
+    newItem[@"itemType"] = @"Category";
+    newItem[@"name"] = @"";
+    [[AppCommunication sharedManager].sellerMyItems addObject:newItem];
     [self.tableView reloadData];
 }
 @end
