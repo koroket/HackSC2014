@@ -6,9 +6,9 @@
 // project.
 
 
-// InAppSettings
-#define COCOAPODS_POD_AVAILABLE_InAppSettings
-#define COCOAPODS_VERSION_MAJOR_InAppSettings 1
-#define COCOAPODS_VERSION_MINOR_InAppSettings 0
-#define COCOAPODS_VERSION_PATCH_InAppSettings 0
+// MBProgressHUD
+#define COCOAPODS_POD_AVAILABLE_MBProgressHUD
+#define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
+#define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 

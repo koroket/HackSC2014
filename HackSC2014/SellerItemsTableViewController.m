@@ -8,13 +8,18 @@
 
 #import "SellerItemsTableViewController.h"
 #import "AppCommunication.h"
+#import "MBProgressHUD.h"
 //#import "SellerItem.h"
 @interface SellerItemsTableViewController ()
 - (IBAction)uploadItemSet:(id)sender;
 - (IBAction)addCategory:(id)sender;
 @end
 
+
 @implementation SellerItemsTableViewController
+{
+    bool clickedUpdate;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,12 +66,14 @@
         priceLabel.userInteractionEnabled = false;
         [cellButton setTitle:@"Add" forState:UIControlStateNormal];
         [cellButton addTarget:self
-                     action:@selector(addItem)
+                       action:@selector(addItem:)
            forControlEvents:UIControlEventTouchUpInside];
         nameLabel.placeholder = @"Category Name";
     }
     else
     {
+        priceLabel.alpha = 1.0;
+        priceLabel.userInteractionEnabled = true;
         priceLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"price"];
         [cellButton setTitle:@"Up" forState:UIControlStateNormal];
         [cellButton addTarget:self
@@ -79,13 +86,18 @@
     
     return cell;
 }
--(void)addItem
+-(void)addItem:(id)sender
 {
+    UIButton *senderButton = (UIButton *)sender;
+    
+    UITableViewCell* cell = (UITableViewCell*)senderButton.superview.superview;
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    
     NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
     newItem[@"itemType"] = @"Item";
     newItem[@"name"] = @"";
     newItem[@"price"] = @"";
-    [[AppCommunication sharedManager].sellerMyItems addObject:newItem];
+    [[AppCommunication sharedManager].sellerMyItems insertObject:newItem atIndex:indexPath.row+1];
     [self.tableView reloadData];
 }
 -(void)moveCellUp:(id)sender
@@ -128,49 +140,24 @@
         
     }
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (IBAction)uploadItemSet:(id)sender {
+    if(!clickedUpdate)
+    {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"Updating Server";
+        [self updateItemSet];
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (IBAction)addCategory:(id)sender {
+    NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
+    newItem[@"itemType"] = @"Category";
+    newItem[@"name"] = @"";
+    [[AppCommunication sharedManager].sellerMyItems addObject:newItem];
+    [self.tableView reloadData];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (void)updateItemSet
 {
     //URL
@@ -207,6 +194,12 @@
                                          NSURLResponse *response,
                                          NSError *error)
          {
+             dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                clickedUpdate = false;
+                            });
+
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
              NSInteger responseStatusCode = [httpResponse statusCode];
              if (responseStatusCode == 200 && data)
@@ -229,15 +222,5 @@
         NSLog(@"Cannot connect to server");
     }
 }
-- (IBAction)uploadItemSet:(id)sender {
-    [self updateItemSet];
-}
 
-- (IBAction)addCategory:(id)sender {
-    NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
-    newItem[@"itemType"] = @"Category";
-    newItem[@"name"] = @"";
-    [[AppCommunication sharedManager].sellerMyItems addObject:newItem];
-    [self.tableView reloadData];
-}
 @end

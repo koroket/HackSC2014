@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-HackSC2014-InAppSettings.xcscheme</key>
+		<key>Pods-HackSC2014-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>21A6C9EBAF2294737A53B914</key>
+		<key>79DB12098A6CE04A2BCABC2C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93FF7C45C94741A907FC3E13</key>
+		<key>BF7D322D13E159A940A3B5EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

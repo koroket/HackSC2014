@@ -1,5 +1,0 @@
-#include "Pods-HackSC2014-InAppSettings.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/InAppSettings" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/InAppSettings"
-OTHER_LDFLAGS = -ObjC
-PODS_ROOT = ${SRCROOT}

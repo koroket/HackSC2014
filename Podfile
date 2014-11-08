@@ -4,7 +4,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'HackSC2014' do
-pod 'InAppSettings', '~> 1.0.0'
+pod 'MBProgressHUD', '~> 0.8'
 end
 
 target 'HackSC2014Tests' do

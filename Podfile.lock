@@ -1,10 +1,10 @@
 PODS:
-  - InAppSettings (1.0.0)
+  - MBProgressHUD (0.9)
 
 DEPENDENCIES:
-  - InAppSettings (~> 1.0.0)
+  - MBProgressHUD (~> 0.8)
 
 SPEC CHECKSUMS:
-  InAppSettings: 7e6c7d349cc48e4aa230163ed5d8a4bc7c3865cf
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
 
 COCOAPODS: 0.34.4
