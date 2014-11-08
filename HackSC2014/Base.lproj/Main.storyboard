@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Title-->
         <scene sceneID="0P1-AD-UnV">
             <objects>
                 <viewController id="uZK-UV-aQV" customClass="LoginViewController" sceneMemberID="viewController">
@@ -86,7 +86,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="H5z-on-6Py"/>
+                    <navigationItem key="navigationItem" title="Title" id="LJj-tW-kL4">
+                        <barButtonItem key="rightBarButtonItem" title="Debug" id="Zcb-Ci-6Iw">
+                            <connections>
+                                <segue destination="3lD-Uq-DGk" kind="show" id="biR-8d-Ui4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bizNameTextField" destination="71D-25-RWf" id="jud-nk-PU6"/>
                         <segue destination="zz5-qm-P9d" kind="show" identifier="buyer" id="mb6-R1-awB"/>
@@ -97,10 +103,10 @@
             </objects>
             <point key="canvasLocation" x="-314" y="419"/>
         </scene>
-        <!--Buyer Setting View Controller-->
+        <!--Buyer Find Seller View Controller-->
         <scene sceneID="E5B-IT-fnf">
             <objects>
-                <viewController id="dr2-Xs-Ou5" customClass="BuyerSettingViewController" sceneMemberID="viewController">
+                <viewController id="dr2-Xs-Ou5" customClass="BuyerFindSellerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yhU-Be-nI1"/>
                         <viewControllerLayoutGuide type="bottom" id="93V-xi-x9e"/>
@@ -124,7 +130,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NW6-IK-a5f">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SellerListCell" id="NW6-IK-a5f">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NW6-IK-a5f" id="gnH-Hh-sLT">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -240,10 +246,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qEr-DH-luH">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" id="qEr-DH-luH">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qEr-DH-luH" id="Mzr-0e-mXc">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcN-ue-fCq">
+                                            <rect key="frame" x="8" y="8" width="504" height="27.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAu-CG-oAo">
+                                            <rect key="frame" x="512" y="8" width="80" height="27.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="h11-GG-9uU"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="PcN-ue-fCq" secondAttribute="bottom" id="84x-Jp-f1a"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fAu-CG-oAo" secondAttribute="trailing" id="Kxm-z8-cky"/>
+                                        <constraint firstItem="PcN-ue-fCq" firstAttribute="top" secondItem="Mzr-0e-mXc" secondAttribute="topMargin" id="QVO-y8-s0L"/>
+                                        <constraint firstItem="fAu-CG-oAo" firstAttribute="leading" secondItem="PcN-ue-fCq" secondAttribute="trailing" id="UUI-Ay-LkC"/>
+                                        <constraint firstItem="PcN-ue-fCq" firstAttribute="leading" secondItem="Mzr-0e-mXc" secondAttribute="leadingMargin" id="iaZ-FQ-K4a"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fAu-CG-oAo" secondAttribute="bottom" id="kf5-EV-ro9"/>
+                                        <constraint firstItem="fAu-CG-oAo" firstAttribute="top" secondItem="Mzr-0e-mXc" secondAttribute="topMargin" id="pWW-ia-78X"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -419,4 +451,7 @@
             <point key="canvasLocation" x="-280" y="1167"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="biR-8d-Ui4"/>
+    </inferredMetricsTieBreakers>
 </document>

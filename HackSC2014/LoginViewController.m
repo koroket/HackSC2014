@@ -262,7 +262,7 @@
              
              if (responseStatusCode == 200 && data)
              {
-                 NSString *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                 NSArray *fetchedData = [NSJSONSerialization JSONObjectWithData:data
                                                                          options:0
                                                                            error:nil];
                  dispatch_async(dispatch_get_main_queue(), ^(void)

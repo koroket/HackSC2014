@@ -7,7 +7,7 @@
 //
 
 #import "BuyerItemsTableViewController.h"
-
+#import "AppCommunication.h"
 @interface BuyerItemsTableViewController ()
 
 @end
@@ -29,75 +29,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
+    
+    [cell.textLabel removeFromSuperview];
+    
+    UILabel *nameLabel = (UILabel*)[cell viewWithTag:1];
+    nameLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].buyerMyItems[indexPath.row])[@"name"];
+    
+    
+    UILabel *priceLabel = (UILabel *)[cell viewWithTag:2];
+    priceLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].buyerMyItems[indexPath.row])[@"price"];
+    
+    
+    return cell;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
-    return 0;
+    return [AppCommunication sharedManager].buyerMyItems.count;
 }
 
 
--(void)retrieveGroups:(NSString*)fbid
-{
-    NSString *fixedUrl = [NSString stringWithFormat:@"https://polar-journey-1136.herokuapp.com/groups/%@",
-                          fbid];
-    NSURL *url = [NSURL URLWithString:fixedUrl];
-    // Request
-    NSMutableURLRequest *request =
-    [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
-    // Request type
-    [request setHTTPMethod:@"GET"];
-    // Session
-    NSURLSession *urlSession = [NSURLSession sharedSession];
-    // Data Task Block
-    NSURLSessionDataTask *dataTask =
-    [urlSession dataTaskWithRequest:request
-                  completionHandler:^(NSData *data,
-                                      NSURLResponse *response,
-                                      NSError *error)
-     {
-         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-         NSInteger responseStatusCode = [httpResponse statusCode];
-         
-         if (responseStatusCode == 200 && data)
-         {
-             dispatch_async(dispatch_get_main_queue(), ^(void)
-                            {
-                                NSArray *fetchedData = [NSJSONSerialization JSONObjectWithData:data
-                                                                                       options:0
-                                                                                         error:nil];
-                                for (int i = 0; i < fetchedData.count; i++)
-                                {
-                                    
-                                    
-                                    NSDictionary *data1 = [fetchedData objectAtIndex:i];
-                                    
-
-                                    
-                                }
-                                [self.tableView reloadData];
-                                
-                                
-                            }); // Main Queue dispatch block
-             
-             // do something with this data
-             // if you want to update UI, do it on main queue
-         }
-         else
-         {
-             // error handling
-         }
-     }]; // Data Task Block
-    [dataTask resume];
-    
-    
-}
 
 @end

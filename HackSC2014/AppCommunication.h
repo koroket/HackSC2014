@@ -15,5 +15,7 @@
 @property (nonatomic, strong) NSString* myFBName;
 @property (nonatomic, strong) NSString* myFBID;
 @property (nonatomic, strong) NSMutableArray* sellerMyItems;
+@property (nonatomic, strong) NSMutableArray* buyerMySellers;
+@property (nonatomic, strong) NSMutableArray* buyerMyItems;
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @end

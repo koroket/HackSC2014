@@ -7,7 +7,7 @@
 //
 
 #import "BuyerFollowerTableViewController.h"
-
+#import "AppCommunication.h"
 @interface BuyerFollowerTableViewController ()
 
 @end
@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [AppCommunication sharedManager].buyerMySellers = [NSMutableArray array];
+    [self getMySellers];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -29,72 +30,116 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SellerListCell" forIndexPath:indexPath];
+    cell.textLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].buyerMySellers[indexPath.row])[@"bizName"];
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [AppCommunication sharedManager].buyerMySellers.count;
 }
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self getMySellersList:indexPath.row];
+}
+-(void)getMySellers
+{
     
-    // Configure the cell...
+    NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/buyer/mySellers/%@",
+                          [AppCommunication sharedManager].myFBID];
+    NSURL *url = [NSURL URLWithString:fixedUrl];
+    // Request
+    NSMutableURLRequest *request =
+    [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    // Request type
+    [request setHTTPMethod:@"GET"];
+    // Session
+    NSURLSession *urlSession = [NSURLSession sharedSession];
+    // Data Task Block
+    NSURLSessionDataTask *dataTask =
+    [urlSession dataTaskWithRequest:request
+                  completionHandler:^(NSData *data,
+                                      NSURLResponse *response,
+                                      NSError *error)
+     {
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+         NSInteger responseStatusCode = [httpResponse statusCode];
+         
+         if (responseStatusCode == 200 && data)
+         {
+             NSArray *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                                                                     options:0
+                                                                       error:nil];
+             dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                
+                                NSLog(@"%@",fetchedData);
+                                [AppCommunication sharedManager].buyerMySellers = [fetchedData mutableCopy];
+                                NSLog(@"%@",[AppCommunication sharedManager].buyerMySellers);
+                                [self.tableView reloadData];
+                                
+                            }); // Main Queue dispatch block
+             
+             // do something with this data
+             // if you want to update UI, do it on main queue
+         }
+         else
+         {
+             // error handling
+         }
+     }]; // Data Task Block
+    [dataTask resume];
     
-    return cell;
+    
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)getMySellersList:(int)index
+{
+    NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/buyer/itemSet/%@",
+                          ((NSDictionary*)[AppCommunication sharedManager].buyerMySellers[index])[@"fbid"]];
+    NSURL *url = [NSURL URLWithString:fixedUrl];
+    // Request
+    NSMutableURLRequest *request =
+    [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    // Request type
+    [request setHTTPMethod:@"GET"];
+    // Session
+    NSURLSession *urlSession = [NSURLSession sharedSession];
+    // Data Task Block
+    NSURLSessionDataTask *dataTask =
+    [urlSession dataTaskWithRequest:request
+                  completionHandler:^(NSData *data,
+                                      NSURLResponse *response,
+                                      NSError *error)
+     {
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+         NSInteger responseStatusCode = [httpResponse statusCode];
+         
+         if (responseStatusCode == 200 && data)
+         {
+             NSDictionary *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:0
+                                                                      error:nil];
+             dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                
+                                NSLog(@"%@",fetchedData);
+                                [AppCommunication sharedManager].buyerMyItems = [fetchedData[@"itemSet"] mutableCopy];
+                                [self performSegueWithIdentifier:@"item" sender:self];
+                                
+                            }); // Main Queue dispatch block
+             
+             // do something with this data
+             // if you want to update UI, do it on main queue
+         }
+         else
+         {
+             // error handling
+         }
+     }]; // Data Task Block
+    [dataTask resume];
+    
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

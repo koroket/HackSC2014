@@ -12,7 +12,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 - (IBAction)search:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *bizName;
-@property (strong, nonatomic) NSString *searchedFBID;
+@property (strong, nonatomic) NSDictionary *searchedDictionary;
 - (IBAction)addSeller:(id)sender;
 
 @end
@@ -89,7 +89,7 @@
                                         NSDictionary* tempdict = fetchedData[0];
                                         NSLog(@"%@",tempdict[@"bizName"]);
                                         self.bizName.text = tempdict[@"bizName"];
-                                        self.searchedFBID = tempdict[@"fbid"];
+                                        self.searchedDictionary = fetchedData[0];
                                     }
                           
                                     
@@ -113,7 +113,7 @@
 {
     //URL
     NSString *fixedURL = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/buyer/following/%@",
-                          self.searchedFBID
+                          [AppCommunication sharedManager].myFBID
                           ];
     NSURL *url = [NSURL URLWithString:fixedURL];
     
@@ -127,12 +127,11 @@
     request.HTTPMethod = @"POST";
     
     
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:[AppCommunication sharedManager].sellerMyItems forKey:@"itemSet"];
+
     
     //Error Handling
     NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.searchedDictionary
                                                    options:kNilOptions
                                                      error:&error];
     if (!error)
@@ -160,7 +159,7 @@
                                     dispatch_async(dispatch_get_main_queue(), ^(void)
                                                    {
                                 
-                                                    NSLog(@"%@",fetchedData);
+                                                    [[AppCommunication sharedManager].buyerMySellers addObject:self.searchedDictionary];
                                                    });
                                                    
                                 });//Dispatch main queue block
