@@ -14,6 +14,9 @@
 		62528DF61A0DB8E900EF4CB4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62528DF51A0DB8E900EF4CB4 /* Images.xcassets */; };
 		62528DF91A0DB8E900EF4CB4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62528DF71A0DB8E900EF4CB4 /* LaunchScreen.xib */; };
 		62528E051A0DB8EA00EF4CB4 /* HackSC2014Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E041A0DB8EA00EF4CB4 /* HackSC2014Tests.m */; };
+		62528E101A0DEFD700EF4CB4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E0F1A0DEFD700EF4CB4 /* LoginViewController.m */; };
+		62528E141A0DF16800EF4CB4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62528E131A0DF16800EF4CB4 /* FacebookSDK.framework */; };
+		62528E171A0DF33E00EF4CB4 /* AppCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E161A0DF33E00EF4CB4 /* AppCommunication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,11 @@
 		62528DFE1A0DB8EA00EF4CB4 /* HackSC2014Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackSC2014Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62528E031A0DB8EA00EF4CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62528E041A0DB8EA00EF4CB4 /* HackSC2014Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackSC2014Tests.m; sourceTree = "<group>"; };
+		62528E0E1A0DEFD700EF4CB4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		62528E0F1A0DEFD700EF4CB4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		62528E131A0DF16800EF4CB4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		62528E151A0DF33E00EF4CB4 /* AppCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCommunication.h; sourceTree = "<group>"; };
+		62528E161A0DF33E00EF4CB4 /* AppCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCommunication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62528E141A0DF16800EF4CB4 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +71,7 @@
 		62528DD91A0DB8E900EF4CB4 = {
 			isa = PBXGroup;
 			children = (
+				62528E131A0DF16800EF4CB4 /* FacebookSDK.framework */,
 				62528DE41A0DB8E900EF4CB4 /* HackSC2014 */,
 				62528E011A0DB8EA00EF4CB4 /* HackSC2014Tests */,
 				62528DE31A0DB8E900EF4CB4 /* Products */,
@@ -80,9 +90,13 @@
 		62528DE41A0DB8E900EF4CB4 /* HackSC2014 */ = {
 			isa = PBXGroup;
 			children = (
+				62528DF21A0DB8E900EF4CB4 /* Main.storyboard */,
+				62528E0E1A0DEFD700EF4CB4 /* LoginViewController.h */,
+				62528E0F1A0DEFD700EF4CB4 /* LoginViewController.m */,
 				62528DE91A0DB8E900EF4CB4 /* AppDelegate.h */,
 				62528DEA1A0DB8E900EF4CB4 /* AppDelegate.m */,
-				62528DF21A0DB8E900EF4CB4 /* Main.storyboard */,
+				62528E151A0DF33E00EF4CB4 /* AppCommunication.h */,
+				62528E161A0DF33E00EF4CB4 /* AppCommunication.m */,
 				62528DF51A0DB8E900EF4CB4 /* Images.xcassets */,
 				62528DF71A0DB8E900EF4CB4 /* LaunchScreen.xib */,
 				62528DEC1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld */,
@@ -217,6 +231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62528E171A0DF33E00EF4CB4 /* AppCommunication.m in Sources */,
+				62528E101A0DEFD700EF4CB4 /* LoginViewController.m in Sources */,
 				62528DEE1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld in Sources */,
 				62528DEB1A0DB8E900EF4CB4 /* AppDelegate.m in Sources */,
 				62528DE81A0DB8E900EF4CB4 /* main.m in Sources */,
@@ -341,6 +357,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HackSC2014/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -351,6 +371,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HackSC2014/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,6 +434,7 @@
 				62528E0A1A0DB8EA00EF4CB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62528E0B1A0DB8EA00EF4CB4 /* Build configuration list for PBXNativeTarget "HackSC2014Tests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +443,7 @@
 				62528E0D1A0DB8EA00EF4CB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
