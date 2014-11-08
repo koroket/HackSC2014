@@ -7,7 +7,7 @@
 //
 
 #import "SellerSettingsViewController.h"
-
+#import "AppCommunication.h"
 @interface SellerSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *liveUILabel;
 - (IBAction)switchLiveNonLive:(id)sender;
@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [AppCommunication sharedManager].sellerMyItems = [NSMutableArray array];
     // Do any additional setup after loading the view.
 }
 
@@ -48,6 +49,53 @@
 }
 
 - (IBAction)clickedOnItems:(id)sender {
-    [self performSegueWithIdentifier:@"items" sender:self];
+    [self getMyList];
+}
+-(void)getMyList
+{
+    NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/buyer/itemSet/%@",
+                          [AppCommunication sharedManager].myFBID];
+    NSURL *url = [NSURL URLWithString:fixedUrl];
+    // Request
+    NSMutableURLRequest *request =
+    [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    // Request type
+    [request setHTTPMethod:@"GET"];
+    // Session
+    NSURLSession *urlSession = [NSURLSession sharedSession];
+    // Data Task Block
+    NSURLSessionDataTask *dataTask =
+    [urlSession dataTaskWithRequest:request
+                  completionHandler:^(NSData *data,
+                                      NSURLResponse *response,
+                                      NSError *error)
+     {
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+         NSInteger responseStatusCode = [httpResponse statusCode];
+         
+         if (responseStatusCode == 200 && data)
+         {
+             NSDictionary *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                                                                         options:0
+                                                                           error:nil];
+             dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                
+                                NSLog(@"%@",fetchedData);
+                                [AppCommunication sharedManager].sellerMyItems = [fetchedData[@"itemSet"] mutableCopy];
+                                [self performSegueWithIdentifier:@"items" sender:self];
+                                
+                            }); // Main Queue dispatch block
+             
+             // do something with this data
+             // if you want to update UI, do it on main queue
+         }
+         else
+         {
+             // error handling
+         }
+     }]; // Data Task Block
+    [dataTask resume];
+    
 }
 @end

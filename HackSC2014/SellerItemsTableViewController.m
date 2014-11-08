@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [AppCommunication sharedManager].sellerMyItems = [NSMutableArray array];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -66,7 +66,7 @@
         priceLabel.userInteractionEnabled = false;
         [cellButton setTitle:@"Add" forState:UIControlStateNormal];
         [cellButton addTarget:self
-                       action:@selector(addItem:)
+                       action:@selector(cellButton:)
            forControlEvents:UIControlEventTouchUpInside];
         nameLabel.placeholder = @"Category Name";
     }
@@ -77,7 +77,7 @@
         priceLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"price"];
         [cellButton setTitle:@"Up" forState:UIControlStateNormal];
         [cellButton addTarget:self
-                       action:@selector(moveCellUp:)
+                       action:@selector(cellButton:)
              forControlEvents:UIControlEventTouchUpInside];
         nameLabel.placeholder = @"Item Name";
         priceLabel.placeholder = @"Price";
@@ -86,33 +86,36 @@
     
     return cell;
 }
--(void)addItem:(id)sender
+-(void)cellButton:(id)sender
 {
     UIButton *senderButton = (UIButton *)sender;
-    
-    UITableViewCell* cell = (UITableViewCell*)senderButton.superview.superview;
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    
-    NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
-    newItem[@"itemType"] = @"Item";
-    newItem[@"name"] = @"";
-    newItem[@"price"] = @"";
-    [[AppCommunication sharedManager].sellerMyItems insertObject:newItem atIndex:indexPath.row+1];
-    [self.tableView reloadData];
-}
--(void)moveCellUp:(id)sender
-{
-    UIButton *senderButton = (UIButton *)sender;
-    
-    UITableViewCell* cell = (UITableViewCell*)senderButton.superview.superview;
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    
-    if([((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row-1])[@"itemType"] isEqualToString:@"Item"])
+    if([senderButton.titleLabel.text isEqualToString:@"Add"])
     {
-
-        [[AppCommunication sharedManager].sellerMyItems exchangeObjectAtIndex:indexPath.row-1 withObjectAtIndex:indexPath.row];
+        UITableViewCell* cell = (UITableViewCell*)senderButton.superview.superview;
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+        
+        NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
+        newItem[@"itemType"] = @"Item";
+        newItem[@"name"] = @"";
+        newItem[@"price"] = @"";
+        [[AppCommunication sharedManager].sellerMyItems insertObject:newItem atIndex:indexPath.row+1];
         [self.tableView reloadData];
     }
+    else if([senderButton.titleLabel.text isEqualToString:@"Up"])
+    {
+        UIButton *senderButton = (UIButton *)sender;
+        
+        UITableViewCell* cell = (UITableViewCell*)senderButton.superview.superview;
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+        
+        if([((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row-1])[@"itemType"] isEqualToString:@"Item"])
+        {
+            
+            [[AppCommunication sharedManager].sellerMyItems exchangeObjectAtIndex:indexPath.row-1 withObjectAtIndex:indexPath.row];
+            [self.tableView reloadData];
+        }
+    }
+
 }
 - (void)textFieldDone:(id)sender {
     UITextField *field = sender;
