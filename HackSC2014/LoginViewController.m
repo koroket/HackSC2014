@@ -20,10 +20,12 @@
 @implementation LoginViewController
 {
     bool gettingSellerAccount;
+    bool gotLocations;
 }
 
 - (void)startStandardUpdates
 {
+    
     // Create the location manager if this object does not
     // already have one.
     if (nil == [AppCommunication sharedManager].locationManager)
@@ -34,7 +36,7 @@
 
     
     [AppCommunication sharedManager].locationManager.delegate = self;
-    [AppCommunication sharedManager].locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    [AppCommunication sharedManager].locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     
     // Set a movement threshold for new events.
     [AppCommunication sharedManager].locationManager.distanceFilter = 500; // meters
@@ -61,6 +63,16 @@
             longitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
     [AppCommunication sharedManager].myLocation = newLocation;
     [[AppCommunication sharedManager] strLocationMakerWithLat:newLocation.coordinate.latitude withLongi:newLocation.coordinate.longitude];
+    
+    if(!gotLocations)
+    {
+        gotLocations=true;
+        if([AppCommunication sharedManager].myFBID!=nil)
+        {
+            [self getSellerAccount];
+        }
+    }
+    
 
 }
 
@@ -68,6 +80,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self startStandardUpdates];
+    
     
 }
 -(void)createFBLoginl
@@ -84,7 +97,10 @@
     //call the singleton for string data
     [AppCommunication sharedManager].myFBID = user.objectID;
     [AppCommunication sharedManager].myFBName = user.name;
-    [self getSellerAccount];
+    if([AppCommunication sharedManager].myLocation!=nil)
+    {
+            [self getSellerAccount];
+    }
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
@@ -177,8 +193,10 @@
 {
     if(![self.bizNameTextField.text isEqualToString:@""])
     {
+        
         [self serverCreateSellerAccount];
     }
+    
 }
 -(void)getSellerAccount
 {
@@ -240,9 +258,11 @@
 -(void)serverCreateSellerAccount
 {
 
-        NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/seller/create/%@/%@",
+        NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/seller/create/%@/%@/%f/%f",
                               [AppCommunication sharedManager].myFBID,
-                              [self stringFix:self.bizNameTextField.text]];
+                              [self stringFix:self.bizNameTextField.text],
+                              [AppCommunication sharedManager].myLocation.coordinate.latitude,
+                              [AppCommunication sharedManager].myLocation.coordinate.longitude];
         NSURL *url = [NSURL URLWithString:fixedUrl];
         // Request
         NSMutableURLRequest *request =
