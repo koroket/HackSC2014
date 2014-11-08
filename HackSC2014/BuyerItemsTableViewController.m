@@ -9,6 +9,7 @@
 #import "BuyerItemsTableViewController.h"
 #import "AppCommunication.h"
 @interface BuyerItemsTableViewController ()
+- (IBAction)mapPressed:(id)sender;
 
 @end
 
@@ -56,4 +57,7 @@
 
 
 
+- (IBAction)mapPressed:(id)sender {
+    [self performSegueWithIdentifier:@"map" sender:self];
+}
 @end

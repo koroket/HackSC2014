@@ -24,6 +24,7 @@
 		62528E291A0E4A3600EF4CB4 /* BuyerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E281A0E4A3600EF4CB4 /* BuyerSettingViewController.m */; };
 		62528E2B1A0E4CFF00EF4CB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62528E2A1A0E4CFF00EF4CB4 /* CoreLocation.framework */; };
 		62633BBD1A0E84E0006D32C2 /* BuyerFindSellerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62633BBC1A0E84E0006D32C2 /* BuyerFindSellerViewController.m */; };
+		62633BC01A0EB74F006D32C2 /* BuyerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62633BBF1A0EB74F006D32C2 /* BuyerMapViewController.m */; };
 		795C924893BB9CA52BACFD24 /* libPods-HackSC2014.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		62528E2A1A0E4CFF00EF4CB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		62633BBB1A0E84E0006D32C2 /* BuyerFindSellerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerFindSellerViewController.h; sourceTree = "<group>"; };
 		62633BBC1A0E84E0006D32C2 /* BuyerFindSellerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerFindSellerViewController.m; sourceTree = "<group>"; };
+		62633BBE1A0EB74F006D32C2 /* BuyerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerMapViewController.h; sourceTree = "<group>"; };
+		62633BBF1A0EB74F006D32C2 /* BuyerMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerMapViewController.m; sourceTree = "<group>"; };
 		75356A73D3A71E489D2B5286 /* Pods-HackSC2014.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackSC2014.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackSC2014/Pods-HackSC2014.debug.xcconfig"; sourceTree = "<group>"; };
 		AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackSC2014.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -140,6 +143,8 @@
 				62528E221A0E485600EF4CB4 /* BuyerItemsTableViewController.m */,
 				62528E271A0E4A3600EF4CB4 /* BuyerSettingViewController.h */,
 				62528E281A0E4A3600EF4CB4 /* BuyerSettingViewController.m */,
+				62633BBE1A0EB74F006D32C2 /* BuyerMapViewController.h */,
+				62633BBF1A0EB74F006D32C2 /* BuyerMapViewController.m */,
 				62528E0E1A0DEFD700EF4CB4 /* LoginViewController.h */,
 				62528E0F1A0DEFD700EF4CB4 /* LoginViewController.m */,
 				62528DE91A0DB8E900EF4CB4 /* AppDelegate.h */,
@@ -327,6 +332,7 @@
 				62528E171A0DF33E00EF4CB4 /* AppCommunication.m in Sources */,
 				62528E261A0E49FC00EF4CB4 /* BuyerFollowerTableViewController.m in Sources */,
 				62528E231A0E485600EF4CB4 /* BuyerItemsTableViewController.m in Sources */,
+				62633BC01A0EB74F006D32C2 /* BuyerMapViewController.m in Sources */,
 				62528E101A0DEFD700EF4CB4 /* LoginViewController.m in Sources */,
 				62633BBD1A0E84E0006D32C2 /* BuyerFindSellerViewController.m in Sources */,
 				62528E291A0E4A3600EF4CB4 /* BuyerSettingViewController.m in Sources */,

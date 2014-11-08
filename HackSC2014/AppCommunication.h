@@ -18,4 +18,5 @@
 @property (nonatomic, strong) NSMutableArray* buyerMySellers;
 @property (nonatomic, strong) NSMutableArray* buyerMyItems;
 @property (nonatomic, strong) CLLocationManager* locationManager;
+@property (nonatomic, strong) CLLocation* myLocation;
 @end

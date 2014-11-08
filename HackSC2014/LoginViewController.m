@@ -59,6 +59,7 @@
             
             latitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
             longitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
+    [AppCommunication sharedManager].myLocation = newLocation;
     [[AppCommunication sharedManager] strLocationMakerWithLat:newLocation.coordinate.latitude withLongi:newLocation.coordinate.longitude];
 
 }

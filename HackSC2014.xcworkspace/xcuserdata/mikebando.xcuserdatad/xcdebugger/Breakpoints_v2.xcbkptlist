@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HackSC2014/LoginViewController.m"
-            timestampString = "437167670.648881"
+            timestampString = "437172645.194778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-serverCreateSellerAccount"
             landmarkType = "5">
          </BreakpointContent>
