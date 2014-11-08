@@ -11,6 +11,7 @@
 @interface SellerSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *liveUILabel;
 - (IBAction)switchLiveNonLive:(id)sender;
+- (IBAction)clickedOnItems:(id)sender;
 
 @end
 
@@ -44,5 +45,9 @@
         NSLog(@"Switch is OFF");
         self.liveUILabel.text = @"Turn on business";
     }
+}
+
+- (IBAction)clickedOnItems:(id)sender {
+    [self performSegueWithIdentifier:@"items" sender:self];
 }
 @end

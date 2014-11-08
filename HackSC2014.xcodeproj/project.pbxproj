@@ -18,6 +18,8 @@
 		62528E141A0DF16800EF4CB4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62528E131A0DF16800EF4CB4 /* FacebookSDK.framework */; };
 		62528E171A0DF33E00EF4CB4 /* AppCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E161A0DF33E00EF4CB4 /* AppCommunication.m */; };
 		62528E1A1A0E196200EF4CB4 /* SellerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E191A0E196200EF4CB4 /* SellerSettingsViewController.m */; };
+		62528E1D1A0E1E1600EF4CB4 /* SellerItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E1C1A0E1E1600EF4CB4 /* SellerItemsTableViewController.m */; };
+		62528E201A0E200800EF4CB4 /* SellerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E1F1A0E200800EF4CB4 /* SellerItem.m */; };
 		795C924893BB9CA52BACFD24 /* libPods-HackSC2014.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,10 @@
 		62528E161A0DF33E00EF4CB4 /* AppCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCommunication.m; sourceTree = "<group>"; };
 		62528E181A0E196200EF4CB4 /* SellerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellerSettingsViewController.h; sourceTree = "<group>"; };
 		62528E191A0E196200EF4CB4 /* SellerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerSettingsViewController.m; sourceTree = "<group>"; };
+		62528E1B1A0E1E1600EF4CB4 /* SellerItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellerItemsTableViewController.h; sourceTree = "<group>"; };
+		62528E1C1A0E1E1600EF4CB4 /* SellerItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerItemsTableViewController.m; sourceTree = "<group>"; };
+		62528E1E1A0E200800EF4CB4 /* SellerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellerItem.h; sourceTree = "<group>"; };
+		62528E1F1A0E200800EF4CB4 /* SellerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerItem.m; sourceTree = "<group>"; };
 		75356A73D3A71E489D2B5286 /* Pods-HackSC2014.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackSC2014.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackSC2014/Pods-HackSC2014.debug.xcconfig"; sourceTree = "<group>"; };
 		AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackSC2014.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,8 +115,12 @@
 			isa = PBXGroup;
 			children = (
 				62528DF21A0DB8E900EF4CB4 /* Main.storyboard */,
+				62528E1E1A0E200800EF4CB4 /* SellerItem.h */,
+				62528E1F1A0E200800EF4CB4 /* SellerItem.m */,
 				62528E181A0E196200EF4CB4 /* SellerSettingsViewController.h */,
 				62528E191A0E196200EF4CB4 /* SellerSettingsViewController.m */,
+				62528E1B1A0E1E1600EF4CB4 /* SellerItemsTableViewController.h */,
+				62528E1C1A0E1E1600EF4CB4 /* SellerItemsTableViewController.m */,
 				62528E0E1A0DEFD700EF4CB4 /* LoginViewController.h */,
 				62528E0F1A0DEFD700EF4CB4 /* LoginViewController.m */,
 				62528DE91A0DB8E900EF4CB4 /* AppDelegate.h */,
@@ -299,6 +309,8 @@
 				62528E101A0DEFD700EF4CB4 /* LoginViewController.m in Sources */,
 				62528DEE1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld in Sources */,
 				62528DEB1A0DB8E900EF4CB4 /* AppDelegate.m in Sources */,
+				62528E1D1A0E1E1600EF4CB4 /* SellerItemsTableViewController.m in Sources */,
+				62528E201A0E200800EF4CB4 /* SellerItem.m in Sources */,
 				62528E1A1A0E196200EF4CB4 /* SellerSettingsViewController.m in Sources */,
 				62528DE81A0DB8E900EF4CB4 /* main.m in Sources */,
 			);

@@ -12,4 +12,5 @@
 + (instancetype)sharedManager;
 @property (nonatomic, strong) NSString* myFBName;
 @property (nonatomic, strong) NSString* myFBID;
+@property (nonatomic, strong) NSMutableArray* sellerMyItems;
 @end
