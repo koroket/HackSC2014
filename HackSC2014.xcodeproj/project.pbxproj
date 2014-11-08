@@ -10,7 +10,6 @@
 		62528DE81A0DB8E900EF4CB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DE71A0DB8E900EF4CB4 /* main.m */; };
 		62528DEB1A0DB8E900EF4CB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DEA1A0DB8E900EF4CB4 /* AppDelegate.m */; };
 		62528DEE1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62528DEC1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld */; };
-		62528DF11A0DB8E900EF4CB4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DF01A0DB8E900EF4CB4 /* ViewController.m */; };
 		62528DF41A0DB8E900EF4CB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62528DF21A0DB8E900EF4CB4 /* Main.storyboard */; };
 		62528DF61A0DB8E900EF4CB4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62528DF51A0DB8E900EF4CB4 /* Images.xcassets */; };
 		62528DF91A0DB8E900EF4CB4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62528DF71A0DB8E900EF4CB4 /* LaunchScreen.xib */; };
@@ -34,8 +33,6 @@
 		62528DE91A0DB8E900EF4CB4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		62528DEA1A0DB8E900EF4CB4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		62528DED1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HackSC2014.xcdatamodel; sourceTree = "<group>"; };
-		62528DEF1A0DB8E900EF4CB4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		62528DF01A0DB8E900EF4CB4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		62528DF31A0DB8E900EF4CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62528DF51A0DB8E900EF4CB4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		62528DF81A0DB8E900EF4CB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -85,8 +82,6 @@
 			children = (
 				62528DE91A0DB8E900EF4CB4 /* AppDelegate.h */,
 				62528DEA1A0DB8E900EF4CB4 /* AppDelegate.m */,
-				62528DEF1A0DB8E900EF4CB4 /* ViewController.h */,
-				62528DF01A0DB8E900EF4CB4 /* ViewController.m */,
 				62528DF21A0DB8E900EF4CB4 /* Main.storyboard */,
 				62528DF51A0DB8E900EF4CB4 /* Images.xcassets */,
 				62528DF71A0DB8E900EF4CB4 /* LaunchScreen.xib */,
@@ -224,7 +219,6 @@
 			files = (
 				62528DEE1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld in Sources */,
 				62528DEB1A0DB8E900EF4CB4 /* AppDelegate.m in Sources */,
-				62528DF11A0DB8E900EF4CB4 /* ViewController.m in Sources */,
 				62528DE81A0DB8E900EF4CB4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
