@@ -115,7 +115,7 @@
             </objects>
             <point key="canvasLocation" x="266" y="1233"/>
         </scene>
-        <!--Buyer Follower Table View Controller-->
+        <!--Title-->
         <scene sceneID="nqR-lO-pFB">
             <objects>
                 <tableViewController id="zz5-qm-P9d" customClass="BuyerFollowerTableViewController" sceneMemberID="viewController">
@@ -136,6 +136,13 @@
                             <outlet property="delegate" destination="zz5-qm-P9d" id="ll7-vX-v8S"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="nlO-HX-ZCR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="g3o-2F-cxZ">
+                            <connections>
+                                <segue destination="pk0-xz-yph" kind="show" id="DH7-sK-b6S"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="dr2-Xs-Ou5" kind="show" identifier="settings" id="Mfj-Qz-lLa"/>
                         <segue destination="I14-dA-YKH" kind="show" identifier="item" id="rK2-Ua-9PH"/>
@@ -144,6 +151,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCE-F8-Ax2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944" y="1233"/>
+        </scene>
+        <!--Buyer Setting View Controller-->
+        <scene sceneID="KdV-Zj-skf">
+            <objects>
+                <viewController id="pk0-xz-yph" customClass="BuyerSettingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FbZ-oH-Df2"/>
+                        <viewControllerLayoutGuide type="bottom" id="kIv-Eb-5ix"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g2I-rI-a49">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qht-R7-nxB">
+                                <rect key="frame" x="200" y="120" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8Ic-3g-egq"/>
+                                    <constraint firstAttribute="width" constant="200" id="ztM-ST-gsC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r46-Uv-f55">
+                                <rect key="frame" x="400" y="120" width="184" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="kUC-Gl-u1P"/>
+                                </constraints>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="search:" destination="pk0-xz-yph" eventType="touchUpInside" id="hUp-wA-ozH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BizName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPk-ny-lOQ">
+                                <rect key="frame" x="26" y="250" width="548" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Ktg-PX-k9Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnO-6P-fKT">
+                                <rect key="frame" x="282" y="321" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GPa-kA-UFl"/>
+                                    <constraint firstAttribute="width" constant="46" id="dCt-KC-ij1"/>
+                                </constraints>
+                                <state key="normal" title="Follow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addSeller:" destination="pk0-xz-yph" eventType="touchUpInside" id="HCy-uE-nAC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="r46-Uv-f55" secondAttribute="trailing" id="9K6-q1-Ag0"/>
+                            <constraint firstItem="wPk-ny-lOQ" firstAttribute="top" secondItem="Qht-R7-nxB" secondAttribute="bottom" constant="100" id="DGV-n2-onx"/>
+                            <constraint firstAttribute="centerX" secondItem="AnO-6P-fKT" secondAttribute="centerX" constant="-5" id="PDI-n1-tdm"/>
+                            <constraint firstItem="r46-Uv-f55" firstAttribute="leading" secondItem="Qht-R7-nxB" secondAttribute="trailing" id="TEN-Hy-ikN"/>
+                            <constraint firstItem="r46-Uv-f55" firstAttribute="top" secondItem="FbZ-oH-Df2" secondAttribute="bottom" constant="100" id="afu-v7-r1l"/>
+                            <constraint firstAttribute="centerX" secondItem="Qht-R7-nxB" secondAttribute="centerX" constant="-0.5" id="c04-59-w2B"/>
+                            <constraint firstItem="wPk-ny-lOQ" firstAttribute="leading" secondItem="g2I-rI-a49" secondAttribute="leadingMargin" constant="10" id="g0K-DW-0kC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wPk-ny-lOQ" secondAttribute="trailing" constant="10" id="jpP-gy-q92"/>
+                            <constraint firstItem="AnO-6P-fKT" firstAttribute="top" secondItem="wPk-ny-lOQ" secondAttribute="bottom" constant="50" id="k9U-Gb-I66"/>
+                            <constraint firstItem="Qht-R7-nxB" firstAttribute="top" secondItem="FbZ-oH-Df2" secondAttribute="bottom" constant="100" id="wbg-4G-MIj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bizName" destination="wPk-ny-lOQ" id="QFx-Fr-QVj"/>
+                        <outlet property="searchTextField" destination="Qht-R7-nxB" id="Gr6-w2-WIw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDh-83-aAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1612" y="1238"/>
         </scene>
         <!--Buyer Items Table View Controller-->
         <scene sceneID="Lh8-SE-i7j">

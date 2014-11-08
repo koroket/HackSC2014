@@ -18,6 +18,9 @@
 @end
 
 @implementation LoginViewController
+{
+    bool gettingSellerAccount;
+}
 
 - (void)startStandardUpdates
 {
@@ -80,7 +83,7 @@
     //call the singleton for string data
     [AppCommunication sharedManager].myFBID = user.objectID;
     [AppCommunication sharedManager].myFBName = user.name;
-
+    [self getSellerAccount];
 }
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
@@ -173,8 +176,65 @@
 {
     if(![self.bizNameTextField.text isEqualToString:@""])
     {
-        
+        [self serverCreateSellerAccount];
     }
+}
+-(void)getSellerAccount
+{
+    if(!gettingSellerAccount)
+    {
+        gettingSellerAccount = true;
+        NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/seller/get/%@",
+                              [AppCommunication sharedManager].myFBID];
+        NSURL *url = [NSURL URLWithString:fixedUrl];
+        // Request
+        NSMutableURLRequest *request =
+        [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+        // Request type
+        [request setHTTPMethod:@"GET"];
+        // Session
+        NSURLSession *urlSession = [NSURLSession sharedSession];
+        // Data Task Block
+        NSURLSessionDataTask *dataTask =
+        [urlSession dataTaskWithRequest:request
+                      completionHandler:^(NSData *data,
+                                          NSURLResponse *response,
+                                          NSError *error)
+         {
+             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+             NSInteger responseStatusCode = [httpResponse statusCode];
+             
+             if (responseStatusCode == 200 && data)
+             {
+                 NSArray *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                                                                         options:0
+                                                                           error:nil];
+                 dispatch_async(dispatch_get_main_queue(), ^(void)
+                                {
+                                    
+                                    if(fetchedData.count==0)
+                                    {
+                                        NSLog(@"No results");
+                                    }
+                                    else
+                                    {
+                                        NSLog(@"%@",fetchedData);
+                                    }
+                                    
+                                }); // Main Queue dispatch block
+                 
+                 // do something with this data
+                 // if you want to update UI, do it on main queue
+             }
+             else
+             {
+                 NSLog(@"connection error");
+             }
+         }]; // Data Task Block
+        [dataTask resume];
+    }
+    
+    
 }
 -(void)serverCreateSellerAccount
 {
@@ -202,11 +262,14 @@
              
              if (responseStatusCode == 200 && data)
              {
+                 NSString *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                                                                         options:0
+                                                                           error:nil];
                  dispatch_async(dispatch_get_main_queue(), ^(void)
                                 {
 
-                                    NSLog(@"Account Made Successfully");
-                                    
+                                    NSLog(@"%@",fetchedData);
+                                        [self performSegueWithIdentifier:@"seller" sender:self];
                                 }); // Main Queue dispatch block
                  
                  // do something with this data
@@ -226,7 +289,8 @@
 }
 
 - (IBAction)isSeller:(id)sender {
-    [self performSegueWithIdentifier:@"seller" sender:self];
+    [self createSellerAccount];
+
 }
 -(NSString*)stringFix:(NSString*) str
 {
