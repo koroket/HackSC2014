@@ -1,1 +1,10 @@
+PODS:
+  - InAppSettings (1.0.0)
+
+DEPENDENCIES:
+  - InAppSettings (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  InAppSettings: 7e6c7d349cc48e4aa230163ed5d8a4bc7c3865cf
+
 COCOAPODS: 0.34.4

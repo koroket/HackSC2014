@@ -1,0 +1,1 @@
+../../../InAppSettings/InAppSettings/InAppSettingsSpecifier.h

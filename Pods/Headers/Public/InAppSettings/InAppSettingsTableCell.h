@@ -1,0 +1,1 @@
+../../../InAppSettings/InAppSettings/InAppSettingsTableCell.h
