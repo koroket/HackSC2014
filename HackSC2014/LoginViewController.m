@@ -256,28 +256,21 @@
     
     if([AppCommunication sharedManager].didGetPastInitialViewController)
     {
-        if([[AppCommunication sharedManager].typeOfPerson isEqualToString:@"buyer"])
-        {
-            if([AppCommunication sharedManager].buyerMySellers!=nil)
-            {
+
                 if([AppCommunication sharedManager].buyerMapViewController!=nil)
                 {
-
-                        [[AppCommunication sharedManager].buyerMapViewController updateMapWithLatitude:[AppCommunication sharedManager].currentLatitude.doubleValue andWithLongitude:[AppCommunication sharedManager].currentLongitude.doubleValue];
-
-                    
+                                            [[AppCommunication sharedManager].buyerMapViewController updateMapWithLatitude:[AppCommunication sharedManager].currentLatitude.doubleValue andWithLongitude:[AppCommunication sharedManager].currentLongitude.doubleValue];
                 }
-                for(int i = 0; i < [AppCommunication sharedManager].buyerMySellers.count;i++)
+                if([AppCommunication sharedManager].sellerMyFollowers!=nil)
                 {
-                    NSDictionary* temp = [AppCommunication sharedManager].buyerMySellers[i];
-                    [self sendSinchTo:temp[@"fbid"] fromID:[AppCommunication sharedManager].myFBID withLatitude:[AppCommunication sharedManager].myLocation.coordinate.latitude withLongitude:[AppCommunication sharedManager].myLocation.coordinate.longitude];
+                    for(int i = 0; i < [AppCommunication sharedManager].sellerMyFollowers.count;i++)
+                    {
+                        NSDictionary* temp = [AppCommunication sharedManager].sellerMyFollowers[i];
+                        [self sendSinchTo:temp[@"fbid"] fromID:[AppCommunication sharedManager].myFBID withLatitude:[AppCommunication sharedManager].myLocation.coordinate.latitude withLongitude:[AppCommunication sharedManager].myLocation.coordinate.longitude];
+                    }
                 }
-            }
-        }
-        else
-        {
+
         
-        }
     }
     if(!gotLocations)
     {
@@ -451,8 +444,8 @@
 
                                         self.buyerButton.alpha = 1.0;
                                         self.buyerButton.userInteractionEnabled = YES;
-                                        self.sellerButton.alpha = 0.0;
-                                        self.sellerButton.userInteractionEnabled = NO;
+                                        self.sellerButton.alpha = 1.0;
+                                        self.sellerButton.userInteractionEnabled = YES;
                                         
                                         self.bizNameTextField.alpha = 1.0;
                                         self.bizinput.alpha = 1.0;
@@ -545,15 +538,66 @@
 }
 - (IBAction)isBuyer:(id)sender {
     [self performSegueWithIdentifier:@"buyer" sender:self];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (IBAction)isSeller:(id)sender {
+    
+    [self performSegueWithIdentifier:@"seller" sender:self];
+    [self retrieveMyFollowers];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 
-        [self performSegueWithIdentifier:@"seller" sender:self];
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
 
 
 
+}
+-(void)retrieveMyFollowers
+{
+
+    
+    NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/seller/myFollowers/%@",
+                          [AppCommunication sharedManager].myFBID
+                          ];
+    NSURL *url = [NSURL URLWithString:fixedUrl];
+    // Request
+    NSMutableURLRequest *request =
+    [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    // Request type
+    [request setHTTPMethod:@"GET"];
+    // Session
+    NSURLSession *urlSession = [NSURLSession sharedSession];
+    // Data Task Block
+    NSURLSessionDataTask *dataTask =
+    [urlSession dataTaskWithRequest:request
+                  completionHandler:^(NSData *data,
+                                      NSURLResponse *response,
+                                      NSError *error)
+     {
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+         NSInteger responseStatusCode = [httpResponse statusCode];
+         
+         if (responseStatusCode == 200 && data)
+         {
+             NSArray *fetchedData = [NSJSONSerialization JSONObjectWithData:data
+                                                                    options:0
+                                                                      error:nil];
+             dispatch_async(dispatch_get_main_queue(), ^(void)
+                            {
+                                
+                                NSLog(@"%@",fetchedData);
+                                [AppCommunication sharedManager].sellerMyFollowers = [fetchedData mutableCopy];
+                                
+                            }); // Main Queue dispatch block
+             
+             // do something with this data
+             // if you want to update UI, do it on main queue
+         }
+         else
+         {
+             // error handling
+         }
+     }]; // Data Task Block
+    [dataTask resume];
 }
 -(NSString*)stringFix:(NSString*) str
 {

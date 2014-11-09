@@ -33,6 +33,8 @@
 }
 -(void)didUpdateUserLocation:(double)lati andWithLongitude:(double)longi
 {
+    NSLog(@"called");
+
     MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
     MKCoordinateRegion region = MKCoordinateRegionMake([AppCommunication sharedManager].myLocation.coordinate, span);
     
@@ -71,7 +73,7 @@
             point.coordinate = coordinate;
             point.title =  [leg objectForKey:@"end_address"];
             point.subtitle = @"I'm here!!!";
-            
+            [self.mapView removeAnnotations:self.mapView.annotations];
             [self.mapView addAnnotation:point];
             
             NSArray *steps = [leg objectForKey:@"steps"];
