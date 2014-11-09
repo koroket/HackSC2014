@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *bizName;
 @property (strong, nonatomic) NSDictionary *searchedDictionary;
 - (IBAction)addSeller:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *Follow;
 
 @end
 
@@ -24,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     // Do any additional setup after loading the view.
 }
 
@@ -90,6 +92,8 @@
                                         NSLog(@"%@",tempdict[@"bizName"]);
                                         self.bizName.text = tempdict[@"bizName"];
                                         self.searchedDictionary = fetchedData[0];
+                                        self.Follow.alpha = 1.0;
+                                        self.Follow.userInteractionEnabled = YES;
                                     }
                           
                                     

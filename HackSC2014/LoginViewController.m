@@ -11,10 +11,16 @@
 #import "AppCommunication.h"
 #import <CoreLocation/CoreLocation.h>
 #import "BuyerMapViewController.h"
+#import <QuartzCore/QuartzCore.h>
 @interface LoginViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *sellerButton;
+@property (strong, nonatomic) IBOutlet UIButton *buyerButton;
 - (IBAction)isBuyer:(id)sender;
 - (IBAction)isSeller:(id)sender;
-@property (strong, nonatomic) IBOutlet UITextField *bizNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *bizinput;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bizNameLbel;
+@property (strong, nonatomic) IBOutlet FBLoginView *fbview;
+@property (strong, nonatomic) IBOutlet UILabel *bizNameTextField;
 @property (nonatomic,strong) id<SINClient> sinchClient;
 @property (nonatomic,strong) id<SINMessageClient> messageClient;
 @end
@@ -24,7 +30,29 @@
     bool gettingSellerAccount;
     bool gotLocations;
     bool gotFacebook;
+    bool sellerAuth;
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.buyerButton.layer.cornerRadius = 20;
+    self.buyerButton.clipsToBounds = YES;
+    self.buyerButton.userInteractionEnabled = NO;
+    
+    self.sellerButton.layer.cornerRadius = 20;
+    self.sellerButton.clipsToBounds = YES;
+    self.sellerButton.userInteractionEnabled = NO;
+    
+    self.view.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
+    
+    // Do any additional setup after loading the view.
+    //[self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self startStandardUpdates];
+    
+    
+    
+}
+
 -(void)clientDidFail:(id<SINClient>)client error:(NSError *)error
 {
     NSLog(@"fail");
@@ -179,23 +207,11 @@
 
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self startStandardUpdates];
-    
-    
-}
--(void)createFBLoginl
-{
-    //For Some Reason App crashes without this
-    FBLoginView *loginView = [[FBLoginView alloc] init];
-}
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user
 {
-
+    self.fbview.userInteractionEnabled = NO;
     
     //call the singleton for string data
     [AppCommunication sharedManager].myFBID = user.objectID;
@@ -208,6 +224,11 @@
             [self getSellerAccount];
             [self createClient];
         }
+
+    self.fbview.alpha = 0.0;
+
+
+
     }
 }
 
@@ -341,11 +362,32 @@
                                     
                                     if(fetchedData.count==0)
                                     {
-                                        NSLog(@"No results");
+
+                                        self.buyerButton.alpha = 1.0;
+                                        self.buyerButton.userInteractionEnabled = YES;
+                                        self.sellerButton.alpha = 0.0;
+                                        self.sellerButton.userInteractionEnabled = NO;
+                                        
+                                        self.bizNameTextField.alpha = 1.0;
+                                        self.bizinput.alpha = 1.0;
+                                        self.bizinput.userInteractionEnabled = YES;
+
+                                        
                                     }
                                     else
                                     {
                                         NSLog(@"%@",fetchedData);
+                                        NSDictionary *tempDict = fetchedData[0];
+                                        [AppCommunication sharedManager].myBizName = tempDict[@"bizName"];
+                                            sellerAuth = true;
+                                        self.buyerButton.alpha = 1.0;
+                                        self.buyerButton.userInteractionEnabled = YES;
+                                        self.sellerButton.alpha = 1.0;
+                                        self.sellerButton.userInteractionEnabled = YES;
+                                        
+                                        self.bizNameTextField.alpha = 0.0;
+                                        self.bizinput.alpha = 0.0;
+                                        self.bizinput.userInteractionEnabled = NO;
                                     }
                                     
                                 }); // Main Queue dispatch block
@@ -399,6 +441,8 @@
 
                                     NSLog(@"%@",fetchedData);
                                         [self performSegueWithIdentifier:@"seller" sender:self];
+                                        [self.navigationController setNavigationBarHidden:NO animated:YES];
+                                
                                 }); // Main Queue dispatch block
                  
                  // do something with this data
@@ -418,7 +462,11 @@
 }
 
 - (IBAction)isSeller:(id)sender {
-    [self createSellerAccount];
+
+        [self performSegueWithIdentifier:@"seller" sender:self];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+
+
 
 }
 -(NSString*)stringFix:(NSString*) str

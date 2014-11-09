@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     self.trying = [AppCommunication sharedManager].sellerMyItems;
 
     // Uncomment the following line to preserve selection between presentations.
@@ -50,10 +51,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
-    
+        cell.backgroundColor = [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     [cell.textLabel removeFromSuperview];
     
     UITextField *nameLabel = (UITextField *)[cell viewWithTag:1];
+    nameLabel.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     nameLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"name"];
     [nameLabel addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingChanged];
     
@@ -61,9 +63,9 @@
     UITextField *priceLabel = (UITextField *)[cell viewWithTag:2];
     [priceLabel addTarget:self action:@selector(priceFieldDone:) forControlEvents:UIControlEventEditingChanged];
     
-    
+    priceLabel.backgroundColor = [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     UIButton *cellButton = (UIButton *)[cell viewWithTag:3];
-    
+    cellButton.backgroundColor = [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     if([((NSMutableDictionary*)[AppCommunication sharedManager].sellerMyItems[indexPath.row])[@"itemType"] isEqualToString:@"Category"])
     {
         priceLabel.alpha = 0.0;
@@ -223,7 +225,7 @@
              {
                  dispatch_async(dispatch_get_main_queue(), ^(void)
                                 {
-
+                                    [self performSegueWithIdentifier:@"unwind" sender:self];
                                 });//Dispatch main queue block
              }//if
              else

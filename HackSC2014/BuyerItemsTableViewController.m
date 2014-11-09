@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,14 +36,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
-    
+    cell.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
+
     [cell.textLabel removeFromSuperview];
     
     UILabel *nameLabel = (UILabel*)[cell viewWithTag:1];
+    nameLabel.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
+
     nameLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].buyerMyItems[indexPath.row])[@"name"];
     
     
     UILabel *priceLabel = (UILabel *)[cell viewWithTag:2];
+    priceLabel.backgroundColor=  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
+
     priceLabel.text = ((NSMutableDictionary*)[AppCommunication sharedManager].buyerMyItems[indexPath.row])[@"price"];
     
     

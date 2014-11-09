@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620EDC671A0F37DF00BF3AC5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 620EDC661A0F37DF00BF3AC5 /* fontawesome-webfont.ttf */; };
+		624ABA261A0F0CCE00354E2E /* SellerContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 624ABA251A0F0CCE00354E2E /* SellerContactsTableViewController.m */; };
 		62528DE81A0DB8E900EF4CB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DE71A0DB8E900EF4CB4 /* main.m */; };
 		62528DEB1A0DB8E900EF4CB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DEA1A0DB8E900EF4CB4 /* AppDelegate.m */; };
 		62528DEE1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62528DEC1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld */; };
@@ -40,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		46217EFA0426F393B12149CD /* Pods-HackSC2014.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackSC2014.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackSC2014/Pods-HackSC2014.release.xcconfig"; sourceTree = "<group>"; };
+		620EDC661A0F37DF00BF3AC5 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		624ABA241A0F0CCE00354E2E /* SellerContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellerContactsTableViewController.h; sourceTree = "<group>"; };
+		624ABA251A0F0CCE00354E2E /* SellerContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerContactsTableViewController.m; sourceTree = "<group>"; };
 		62528DE21A0DB8E900EF4CB4 /* HackSC2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackSC2014.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62528DE61A0DB8E900EF4CB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62528DE71A0DB8E900EF4CB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 		62528DD91A0DB8E900EF4CB4 = {
 			isa = PBXGroup;
 			children = (
+				620EDC661A0F37DF00BF3AC5 /* fontawesome-webfont.ttf */,
 				62528E131A0DF16800EF4CB4 /* FacebookSDK.framework */,
 				62528DE41A0DB8E900EF4CB4 /* HackSC2014 */,
 				62528E011A0DB8EA00EF4CB4 /* HackSC2014Tests */,
@@ -135,6 +141,8 @@
 				62528E191A0E196200EF4CB4 /* SellerSettingsViewController.m */,
 				62528E1B1A0E1E1600EF4CB4 /* SellerItemsTableViewController.h */,
 				62528E1C1A0E1E1600EF4CB4 /* SellerItemsTableViewController.m */,
+				624ABA241A0F0CCE00354E2E /* SellerContactsTableViewController.h */,
+				624ABA251A0F0CCE00354E2E /* SellerContactsTableViewController.m */,
 				62528E241A0E49FC00EF4CB4 /* BuyerFollowerTableViewController.h */,
 				62528E251A0E49FC00EF4CB4 /* BuyerFollowerTableViewController.m */,
 				62633BBB1A0E84E0006D32C2 /* BuyerFindSellerViewController.h */,
@@ -245,6 +253,7 @@
 				TargetAttributes = {
 					62528DE11A0DB8E900EF4CB4 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 8V8HUCA3M9;
 					};
 					62528DFD1A0DB8EA00EF4CB4 = {
 						CreatedOnToolsVersion = 6.1;
@@ -276,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				620EDC671A0F37DF00BF3AC5 /* fontawesome-webfont.ttf in Resources */,
 				62528DF41A0DB8E900EF4CB4 /* Main.storyboard in Resources */,
 				62528DF91A0DB8E900EF4CB4 /* LaunchScreen.xib in Resources */,
 				62528DF61A0DB8E900EF4CB4 /* Images.xcassets in Resources */,
@@ -334,6 +344,7 @@
 				62528E231A0E485600EF4CB4 /* BuyerItemsTableViewController.m in Sources */,
 				62633BC01A0EB74F006D32C2 /* BuyerMapViewController.m in Sources */,
 				62528E101A0DEFD700EF4CB4 /* LoginViewController.m in Sources */,
+				624ABA261A0F0CCE00354E2E /* SellerContactsTableViewController.m in Sources */,
 				62633BBD1A0E84E0006D32C2 /* BuyerFindSellerViewController.m in Sources */,
 				62528E291A0E4A3600EF4CB4 /* BuyerSettingViewController.m in Sources */,
 				62528DEE1A0DB8E900EF4CB4 /* HackSC2014.xcdatamodeld in Sources */,
@@ -463,6 +474,8 @@
 			baseConfigurationReference = 75356A73D3A71E489D2B5286 /* Pods-HackSC2014.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -487,6 +500,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -495,6 +509,8 @@
 			baseConfigurationReference = 46217EFA0426F393B12149CD /* Pods-HackSC2014.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -519,6 +535,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
