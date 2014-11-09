@@ -50,86 +50,94 @@
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
         NSArray *routes = [result objectForKey:@"routes"];
-        
-        NSDictionary *firstRoute = [routes objectAtIndex:0];
-        
-        NSDictionary *leg =  [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
-        
-        NSDictionary *end_location = [leg objectForKey:@"end_location"];
-        
-        double latitude = [[end_location objectForKey:@"lat"] doubleValue];
-        double longitude = [[end_location objectForKey:@"lng"] doubleValue];
-        
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-        
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-        point.coordinate = coordinate;
-        point.title =  [leg objectForKey:@"end_address"];
-        point.subtitle = @"I'm here!!!";
-        
-        [self.mapView addAnnotation:point];
-        
-        NSArray *steps = [leg objectForKey:@"steps"];
-        
-        int stepIndex = 0;
-        
-        CLLocationCoordinate2D stepCoordinates[1  + [steps count] + 1];
-        
-        stepCoordinates[stepIndex] = [AppCommunication sharedManager].myLocation.coordinate;
-        
-        for (NSDictionary *step in steps) {
+        if(routes.count>0)
+        {
             
-            NSDictionary *start_location = [step objectForKey:@"start_location"];
-            stepCoordinates[++stepIndex] = [self coordinateWithLocation:start_location];
+            NSDictionary *firstRoute = [routes objectAtIndex:0];
             
-            if ([steps count] == stepIndex){
-                NSDictionary *end_location = [step objectForKey:@"end_location"];
-                stepCoordinates[++stepIndex] = [self coordinateWithLocation:end_location];
+            NSDictionary *leg =  [[firstRoute objectForKey:@"legs"] objectAtIndex:0];
+            
+            NSDictionary *end_location = [leg objectForKey:@"end_location"];
+            
+            double latitude = [[end_location objectForKey:@"lat"] doubleValue];
+            double longitude = [[end_location objectForKey:@"lng"] doubleValue];
+            
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+            point.coordinate = coordinate;
+            point.title =  [leg objectForKey:@"end_address"];
+            point.subtitle = @"I'm here!!!";
+            
+            [self.mapView addAnnotation:point];
+            
+            NSArray *steps = [leg objectForKey:@"steps"];
+            
+            int stepIndex = 0;
+            
+            CLLocationCoordinate2D stepCoordinates[1  + [steps count] + 1];
+            
+            stepCoordinates[stepIndex] = [AppCommunication sharedManager].myLocation.coordinate;
+            
+            for (NSDictionary *step in steps) {
+                
+                NSDictionary *start_location = [step objectForKey:@"start_location"];
+                stepCoordinates[++stepIndex] = [self coordinateWithLocation:start_location];
+                
+                if ([steps count] == stepIndex){
+                    NSDictionary *end_location = [step objectForKey:@"end_location"];
+                    stepCoordinates[++stepIndex] = [self coordinateWithLocation:end_location];
+                }
             }
+            if(_mapView.overlays.count>0)
+            {
+                [self.mapView removeOverlays:self.mapView.overlays];
+            }
+            MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:stepCoordinates count:1 + stepIndex];
+            [_mapView addOverlay:polyLine];
+            
+            
+            //        CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(([AppCommunication sharedManager].myLocation.coordinate.latitude + coordinate.latitude)/2, ([AppCommunication sharedManager].myLocation.coordinate.longitude + coordinate.longitude)/2);
+            double minLatitude,minLongitude,maxLatitude,maxLongitude = 0.0;
+            
+            if(latitude<[AppCommunication sharedManager].myLocation.coordinate.latitude)
+            {
+                minLatitude = latitude;
+                maxLatitude = [AppCommunication sharedManager].myLocation.coordinate.latitude;
+            }
+            else
+            {
+                maxLatitude = latitude;
+                minLatitude = [AppCommunication sharedManager].myLocation.coordinate.latitude;
+            }
+            
+            if(longitude<[AppCommunication sharedManager].myLocation.coordinate.longitude)
+            {
+                minLongitude = longitude;
+                maxLongitude = [AppCommunication sharedManager].myLocation.coordinate.longitude;
+            }
+            else
+            {
+                maxLongitude = longitude;
+                minLongitude = [AppCommunication sharedManager].myLocation.coordinate.longitude;
+            }
+            
+            MKCoordinateRegion region;
+            region.center.latitude = (minLatitude + maxLatitude) / 2;
+            region.center.longitude = (minLongitude + maxLongitude) / 2;
+            
+            region.span.latitudeDelta = (maxLatitude - minLatitude) * 2.1;
+            
+            region.span.latitudeDelta = (region.span.latitudeDelta < 0.01)
+            ? 0.01
+            : region.span.latitudeDelta;
+            
+            region.span.longitudeDelta = (maxLongitude - minLongitude) * 2.1;
+            
+            MKCoordinateRegion scaledRegion = [self.mapView regionThatFits:region];
+            [self.mapView setRegion:scaledRegion animated:YES];
+
         }
-        
-        MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:stepCoordinates count:1 + stepIndex];
-        [_mapView addOverlay:polyLine];
-        
-//        CLLocationCoordinate2D centerCoordinate = CLLocationCoordinate2DMake(([AppCommunication sharedManager].myLocation.coordinate.latitude + coordinate.latitude)/2, ([AppCommunication sharedManager].myLocation.coordinate.longitude + coordinate.longitude)/2);
-        double minLatitude,minLongitude,maxLatitude,maxLongitude = 0.0;
-        
-        if(latitude<[AppCommunication sharedManager].myLocation.coordinate.latitude)
-        {
-            minLatitude = latitude;
-            maxLatitude = [AppCommunication sharedManager].myLocation.coordinate.latitude;
-        }
-        else
-        {
-            maxLatitude = latitude;
-            minLatitude = [AppCommunication sharedManager].myLocation.coordinate.latitude;
-        }
-        
-        if(longitude<[AppCommunication sharedManager].myLocation.coordinate.longitude)
-        {
-            minLongitude = longitude;
-            maxLongitude = [AppCommunication sharedManager].myLocation.coordinate.longitude;
-        }
-        else
-        {
-            maxLongitude = longitude;
-            minLongitude = [AppCommunication sharedManager].myLocation.coordinate.longitude;
-        }
-        
-        MKCoordinateRegion region;
-        region.center.latitude = (minLatitude + maxLatitude) / 2;
-        region.center.longitude = (minLongitude + maxLongitude) / 2;
-        
-        region.span.latitudeDelta = (maxLatitude - minLatitude) * 2.1;
-        
-        region.span.latitudeDelta = (region.span.latitudeDelta < 0.01)
-        ? 0.01
-        : region.span.latitudeDelta;
-        
-        region.span.longitudeDelta = (maxLongitude - minLongitude) * 2.1;
-        
-        MKCoordinateRegion scaledRegion = [self.mapView regionThatFits:region];
-        [self.mapView setRegion:scaledRegion animated:YES];
     }];
 }
 

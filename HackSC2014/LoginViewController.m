@@ -10,6 +10,7 @@
 #import <Sinch/Sinch.h>
 #import "AppCommunication.h"
 #import <CoreLocation/CoreLocation.h>
+#import "BuyerMapViewController.h"
 @interface LoginViewController ()
 - (IBAction)isBuyer:(id)sender;
 - (IBAction)isSeller:(id)sender;
@@ -145,6 +146,13 @@
         {
             if([AppCommunication sharedManager].buyerMySellers!=nil)
             {
+                if([AppCommunication sharedManager].buyerMapViewController!=nil)
+                {
+
+                        [[AppCommunication sharedManager].buyerMapViewController updateMapWithLatitude:[AppCommunication sharedManager].currentLatitude.doubleValue andWithLongitude:[AppCommunication sharedManager].currentLongitude.doubleValue];
+
+                    
+                }
                 for(int i = 0; i < [AppCommunication sharedManager].buyerMySellers.count;i++)
                 {
                     NSDictionary* temp = [AppCommunication sharedManager].buyerMySellers[i];
