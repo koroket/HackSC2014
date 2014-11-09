@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readwrite) PayPalConfiguration *payPalConfiguration;
 - (IBAction)venmoPressed:(id)sender;
 - (IBAction)paypalPressed:(id)sender;
+@property (strong, nonatomic) IBOutlet UITextField *paymentAmountTextField;
 
 @end
 
@@ -21,6 +22,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.venmoButton.layer.cornerRadius = 20;
+    self.paypalButton.layer.cornerRadius = 20;
+    self.venmoButton.clipsToBounds = YES;
+    self.paypalButton.clipsToBounds = YES;
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.venmoButton.layer.bounds;
+    
+    gradientLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            nil];
+    
+    gradientLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    gradientLayer.cornerRadius = self.venmoButton.layer.cornerRadius;
+    
+    [self.venmoButton.layer addSublayer:gradientLayer];
+    
+    CAGradientLayer *gradientLayer2 = [CAGradientLayer layer];
+    gradientLayer2.frame = self.paypalButton.layer.bounds;
+    
+    gradientLayer2.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            nil];
+    
+    gradientLayer2.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    gradientLayer2.cornerRadius = self.paypalButton.layer.cornerRadius;
+    
+    [self.paypalButton.layer addSublayer:gradientLayer2];
     // Do any additional setup after loading the view.
 }
 
@@ -86,7 +125,7 @@
     PayPalPayment *payment = [[PayPalPayment alloc] init];
     
     // Amount, currency, and description
-    payment.amount = [[NSDecimalNumber alloc] initWithString:@"1.01"];
+    payment.amount = [[NSDecimalNumber alloc] initWithString:[NSString stringWithFormat:@"%@",self.paymentAmountTextField.text ]];
     payment.currencyCode = @"USD";
     payment.shortDescription = @"PaySplit";
     
@@ -155,6 +194,7 @@
 }
 
 - (void)VenmoPay{
+
     if (![Venmo isVenmoAppInstalled]) {
         [[Venmo sharedInstance] setDefaultTransactionMethod:VENTransactionMethodAPI];
     }
@@ -172,9 +212,9 @@
                                  // :(
                              }
                          }];
-    
+
     [[Venmo sharedInstance] sendPaymentTo:@"6502817692"
-                                   amount:1*100 // this is in cents!
+                                   amount:(int)(self.paymentAmountTextField.text.doubleValue*100) // this is in cents!
                                      note:@"PaySplit"
                         completionHandler:^(VENTransaction *transaction, BOOL success, NSError *error) {
                             if (success) {
@@ -188,10 +228,28 @@
 
 
 - (IBAction)venmoPressed:(id)sender {
-    [self VenmoPay];
+    if(self.paymentAmountTextField.text.doubleValue>0.0)
+    {
+            [self VenmoPay];
+    }
+    else
+    {
+    
+    }
+
 }
 
 - (IBAction)paypalPressed:(id)sender {
-    [self payPaypal];
+    if(self.paymentAmountTextField.text.doubleValue>0.0)
+    {
+        
+        [self payPaypal];
+
+    }
+    else
+    {
+    
+    }
+
 }
 @end

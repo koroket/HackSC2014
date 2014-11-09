@@ -12,6 +12,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "BuyerMapViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <LocalAuthentication/LocalAuthentication.h>
+
 @interface LoginViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *sellerButton;
 @property (strong, nonatomic) IBOutlet UIButton *buyerButton;
@@ -32,16 +34,100 @@
     bool gotFacebook;
     bool sellerAuth;
 }
-
+- (void)authenicate{
+    LAContext *context = [[LAContext alloc] init];
+    
+    NSError *error = nil;
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&error]) {
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+                localizedReason:@"Are you the device owner?"
+                          reply:^(BOOL success, NSError *error) {
+                              
+                              if (error) {
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                  message:@"There was a problem verifying your identity."
+                                                                                 delegate:nil
+                                                                        cancelButtonTitle:@"Ok"
+                                                                        otherButtonTitles:nil];
+                                  [alert show];
+                                  return;
+                              }
+                              
+                              if (success) {
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                                  message:@"You are the device owner!"
+                                                                                 delegate:nil
+                                                                        cancelButtonTitle:@"Ok"
+                                                                        otherButtonTitles:nil];
+                                  [alert show];
+                                  
+                              } else {
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                                  message:@"You are not the device owner."
+                                                                                 delegate:nil
+                                                                        cancelButtonTitle:@"Ok"
+                                                                        otherButtonTitles:nil];
+                                  [alert show];
+                              }
+                              
+                          }];
+        
+    } else {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Your device cannot authenticate using TouchID."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self authenicate];
     self.buyerButton.layer.cornerRadius = 20;
     self.buyerButton.clipsToBounds = YES;
     self.buyerButton.userInteractionEnabled = NO;
     
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.buyerButton.layer.bounds;
+    
+    gradientLayer.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            nil];
+    
+    gradientLayer.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    gradientLayer.cornerRadius = self.buyerButton.layer.cornerRadius;
+    
+    [self.buyerButton.layer addSublayer:gradientLayer];
+    
+    
     self.sellerButton.layer.cornerRadius = 20;
     self.sellerButton.clipsToBounds = YES;
     self.sellerButton.userInteractionEnabled = NO;
+    
+    CAGradientLayer *gradientLayer2 = [CAGradientLayer layer];
+    gradientLayer2.frame = self.sellerButton.layer.bounds;
+    
+    gradientLayer2.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:1.0f alpha:0.1f].CGColor,
+                            (id)[UIColor colorWithWhite:0.4f alpha:0.5f].CGColor,
+                            nil];
+    
+    gradientLayer2.locations = [NSArray arrayWithObjects:
+                               [NSNumber numberWithFloat:0.0f],
+                               [NSNumber numberWithFloat:1.0f],
+                               nil];
+    
+    gradientLayer2.cornerRadius = self.sellerButton.layer.cornerRadius;
+    
+    [self.sellerButton.layer addSublayer:gradientLayer2];
     
     self.view.backgroundColor =  [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0];
     

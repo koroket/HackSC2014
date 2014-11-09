@@ -33,6 +33,7 @@
 		625ED6D41A0F5F9900F84CA9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D31A0F5F9900F84CA9 /* MessageUI.framework */; };
 		625ED6D61A0F5FA000F84CA9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D51A0F5FA000F84CA9 /* MobileCoreServices.framework */; };
 		625ED6D81A0F5FA800F84CA9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D71A0F5FA800F84CA9 /* SystemConfiguration.framework */; };
+		625ED6DA1A0F639500F84CA9 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D91A0F639500F84CA9 /* LocalAuthentication.framework */; };
 		62633BBD1A0E84E0006D32C2 /* BuyerFindSellerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62633BBC1A0E84E0006D32C2 /* BuyerFindSellerViewController.m */; };
 		62633BC01A0EB74F006D32C2 /* BuyerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62633BBF1A0EB74F006D32C2 /* BuyerMapViewController.m */; };
 		795C924893BB9CA52BACFD24 /* libPods-HackSC2014.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */; };
@@ -97,6 +98,7 @@
 		625ED6D31A0F5F9900F84CA9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		625ED6D51A0F5FA000F84CA9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		625ED6D71A0F5FA800F84CA9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		625ED6D91A0F639500F84CA9 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		62633BBB1A0E84E0006D32C2 /* BuyerFindSellerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerFindSellerViewController.h; sourceTree = "<group>"; };
 		62633BBC1A0E84E0006D32C2 /* BuyerFindSellerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerFindSellerViewController.m; sourceTree = "<group>"; };
 		62633BBE1A0EB74F006D32C2 /* BuyerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerMapViewController.h; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				625ED6DA1A0F639500F84CA9 /* LocalAuthentication.framework in Frameworks */,
 				625ED6D81A0F5FA800F84CA9 /* SystemConfiguration.framework in Frameworks */,
 				625ED6D61A0F5FA000F84CA9 /* MobileCoreServices.framework in Frameworks */,
 				625ED6D41A0F5F9900F84CA9 /* MessageUI.framework in Frameworks */,
@@ -136,6 +139,7 @@
 		4B9FE8646EEA63B83AC83C8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				625ED6D91A0F639500F84CA9 /* LocalAuthentication.framework */,
 				625ED6D71A0F5FA800F84CA9 /* SystemConfiguration.framework */,
 				625ED6D51A0F5FA000F84CA9 /* MobileCoreServices.framework */,
 				625ED6D31A0F5F9900F84CA9 /* MessageUI.framework */,
@@ -483,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -518,7 +522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

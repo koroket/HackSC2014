@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49H-oE-A8u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49H-oE-A8u">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="height" constant="150" id="Bhl-tp-CSJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                <state key="normal" title="Seller">
+                                <state key="normal" title="Sell">
                                     <color key="titleColor" red="0.24966894552173302" green="0.25068841194742225" blue="0.25374681122448983" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="height" constant="150" id="R9N-se-cRm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                <state key="normal" title="Buyer">
+                                <state key="normal" title="Buy">
                                     <color key="titleColor" red="0.24966894552173302" green="0.25068841194742225" blue="0.25374681122448983" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -385,7 +385,7 @@
             </objects>
             <point key="canvasLocation" x="1196" y="563"/>
         </scene>
-        <!--Merchant's Location-->
+        <!--Location-->
         <scene sceneID="rtJ-ii-EsY">
             <objects>
                 <viewController id="end-qu-fbw" customClass="BuyerMapViewController" sceneMemberID="viewController">
@@ -412,7 +412,7 @@
                             <constraint firstItem="A2x-Vg-Vyk" firstAttribute="top" secondItem="UIj-fq-btP" secondAttribute="bottom" id="hii-KK-aFl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Merchant's Location" id="MC9-eM-Gwr">
+                    <navigationItem key="navigationItem" title="Location" id="MC9-eM-Gwr">
                         <barButtonItem key="rightBarButtonItem" title="Payments" id="vOR-9k-s4G">
                             <connections>
                                 <action selector="PayPressed:" destination="end-qu-fbw" id="AEL-V8-bpa"/>
@@ -441,9 +441,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5C-Z9-KrH">
-                                <rect key="frame" x="66" y="114" width="468" height="150"/>
+                                <rect key="frame" x="66" y="200" width="468" height="150"/>
                                 <color key="backgroundColor" red="0.52653333918506084" green="0.89612680540330991" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="dzw-W1-CZB"/>
                                     <constraint firstAttribute="height" constant="150" id="oPa-Lb-HsK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
@@ -451,6 +452,11 @@
                                     <color key="titleColor" red="0.0052993330733509423" green="0.0090191333850580639" blue="0.010064572704081676" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="oPa-Lb-HsK"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="venmoPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="wbZ-5t-kyQ"/>
                                 </connections>
@@ -470,18 +476,34 @@
                                     <action selector="paypalPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="CQf-MM-zZg"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount to Pay" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="37l-pc-3uN">
+                                <rect key="frame" x="56" y="74" width="488" height="106"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="37l-pc-3uN" firstAttribute="leading" secondItem="tN4-wg-2bS" secondAttribute="leadingMargin" constant="40" id="3EV-63-ty3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="37l-pc-3uN" secondAttribute="trailing" constant="40" id="8ZS-ug-X6j"/>
+                            <constraint firstItem="p5C-Z9-KrH" firstAttribute="top" secondItem="37l-pc-3uN" secondAttribute="bottom" constant="20" id="91c-P8-TQf"/>
                             <constraint firstItem="Ts7-GX-USi" firstAttribute="leading" secondItem="tN4-wg-2bS" secondAttribute="leadingMargin" constant="50" id="FMM-fC-qfs"/>
+                            <constraint firstItem="Ts7-GX-USi" firstAttribute="top" secondItem="p5C-Z9-KrH" secondAttribute="bottom" constant="50" id="Hiq-0q-UiT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p5C-Z9-KrH" secondAttribute="trailing" constant="50" id="SIM-At-MDo"/>
                             <constraint firstItem="p5C-Z9-KrH" firstAttribute="top" secondItem="Bf4-E4-c1f" secondAttribute="bottom" constant="50" id="ZZP-gd-Zmh"/>
                             <constraint firstItem="UtQ-1S-Sk8" firstAttribute="top" secondItem="Ts7-GX-USi" secondAttribute="bottom" constant="50" id="bdg-8K-vcF"/>
+                            <constraint firstItem="37l-pc-3uN" firstAttribute="top" secondItem="Bf4-E4-c1f" secondAttribute="bottom" constant="10" id="eir-Gf-Ee2"/>
                             <constraint firstItem="p5C-Z9-KrH" firstAttribute="leading" secondItem="tN4-wg-2bS" secondAttribute="leadingMargin" constant="50" id="nQw-Ig-Yk2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ts7-GX-USi" secondAttribute="trailing" constant="50" id="rPF-ue-b1o"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ZZP-gd-Zmh"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="paymentAmountTextField" destination="37l-pc-3uN" id="bGT-L8-srW"/>
                         <outlet property="paypalButton" destination="Ts7-GX-USi" id="vpv-lt-dCk"/>
                         <outlet property="venmoButton" destination="p5C-Z9-KrH" id="q1j-3o-VUv"/>
                     </connections>
