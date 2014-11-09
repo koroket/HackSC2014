@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "PayPalMobile.h"
 @interface AppDelegate ()
 
 @end
@@ -52,6 +53,8 @@
     // Change the appearance of other navigation button
     UIImage *barButtonImage = [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentSandbox : @"ATu-vxD88L-PDP6FejfApTDlkrbW-quBnkujnMbjfy6kcOtwbM1VnRHBF1v5"}];
     [Venmo startWithAppId:@"2073" secret:@"E9W6dpgV2wCc5Uy2TzTWgPVzxRScsTqZ" name:@"PaySplit"];
     return YES;
 }

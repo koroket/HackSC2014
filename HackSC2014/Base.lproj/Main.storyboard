@@ -440,21 +440,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ts7-GX-USi">
-                                <rect key="frame" x="66" y="400" width="468" height="150"/>
-                                <color key="backgroundColor" red="0.18303002502797591" green="0.42532012838803612" blue="0.89101988077163696" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="ymQ-tM-2nQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <state key="normal" title="PayPal">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="paypalPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="CQf-MM-zZg"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5C-Z9-KrH">
                                 <rect key="frame" x="66" y="114" width="468" height="150"/>
                                 <color key="backgroundColor" red="0.52653333918506084" green="0.89612680540330991" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -468,6 +453,21 @@
                                 </state>
                                 <connections>
                                     <action selector="venmoPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="wbZ-5t-kyQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ts7-GX-USi">
+                                <rect key="frame" x="66" y="400" width="468" height="150"/>
+                                <color key="backgroundColor" red="0.18303002502797591" green="0.42532012838803612" blue="0.89101988077163696" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="ymQ-tM-2nQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="PayPal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="paypalPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="CQf-MM-zZg"/>
                                 </connections>
                             </button>
                         </subviews>

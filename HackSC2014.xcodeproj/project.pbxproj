@@ -26,6 +26,13 @@
 		62528E261A0E49FC00EF4CB4 /* BuyerFollowerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E251A0E49FC00EF4CB4 /* BuyerFollowerTableViewController.m */; };
 		62528E291A0E4A3600EF4CB4 /* BuyerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528E281A0E4A3600EF4CB4 /* BuyerSettingViewController.m */; };
 		62528E2B1A0E4CFF00EF4CB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62528E2A1A0E4CFF00EF4CB4 /* CoreLocation.framework */; };
+		625ED6CC1A0F5F0A00F84CA9 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6C41A0F5F0A00F84CA9 /* libPayPalMobile.a */; };
+		625ED6CE1A0F5F7600F84CA9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6CD1A0F5F7600F84CA9 /* AudioToolbox.framework */; };
+		625ED6D01A0F5F8400F84CA9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6CF1A0F5F8400F84CA9 /* AVFoundation.framework */; };
+		625ED6D21A0F5F9200F84CA9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D11A0F5F9200F84CA9 /* CoreMedia.framework */; };
+		625ED6D41A0F5F9900F84CA9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D31A0F5F9900F84CA9 /* MessageUI.framework */; };
+		625ED6D61A0F5FA000F84CA9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D51A0F5FA000F84CA9 /* MobileCoreServices.framework */; };
+		625ED6D81A0F5FA800F84CA9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 625ED6D71A0F5FA800F84CA9 /* SystemConfiguration.framework */; };
 		62633BBD1A0E84E0006D32C2 /* BuyerFindSellerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62633BBC1A0E84E0006D32C2 /* BuyerFindSellerViewController.m */; };
 		62633BC01A0EB74F006D32C2 /* BuyerMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62633BBF1A0EB74F006D32C2 /* BuyerMapViewController.m */; };
 		795C924893BB9CA52BACFD24 /* libPods-HackSC2014.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */; };
@@ -76,6 +83,20 @@
 		62528E271A0E4A3600EF4CB4 /* BuyerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerSettingViewController.h; sourceTree = "<group>"; };
 		62528E281A0E4A3600EF4CB4 /* BuyerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerSettingViewController.m; sourceTree = "<group>"; };
 		62528E2A1A0E4CFF00EF4CB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		625ED6C41A0F5F0A00F84CA9 /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPayPalMobile.a; sourceTree = "<group>"; };
+		625ED6C51A0F5F0A00F84CA9 /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalConfiguration.h; sourceTree = "<group>"; };
+		625ED6C61A0F5F0A00F84CA9 /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalFuturePaymentViewController.h; sourceTree = "<group>"; };
+		625ED6C71A0F5F0A00F84CA9 /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalMobile.h; sourceTree = "<group>"; };
+		625ED6C81A0F5F0A00F84CA9 /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalOAuthScopes.h; sourceTree = "<group>"; };
+		625ED6C91A0F5F0A00F84CA9 /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPayment.h; sourceTree = "<group>"; };
+		625ED6CA1A0F5F0A00F84CA9 /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalPaymentViewController.h; sourceTree = "<group>"; };
+		625ED6CB1A0F5F0A00F84CA9 /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayPalProfileSharingViewController.h; sourceTree = "<group>"; };
+		625ED6CD1A0F5F7600F84CA9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		625ED6CF1A0F5F8400F84CA9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		625ED6D11A0F5F9200F84CA9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		625ED6D31A0F5F9900F84CA9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		625ED6D51A0F5FA000F84CA9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		625ED6D71A0F5FA800F84CA9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		62633BBB1A0E84E0006D32C2 /* BuyerFindSellerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerFindSellerViewController.h; sourceTree = "<group>"; };
 		62633BBC1A0E84E0006D32C2 /* BuyerFindSellerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyerFindSellerViewController.m; sourceTree = "<group>"; };
 		62633BBE1A0EB74F006D32C2 /* BuyerMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyerMapViewController.h; sourceTree = "<group>"; };
@@ -89,8 +110,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				625ED6D81A0F5FA800F84CA9 /* SystemConfiguration.framework in Frameworks */,
+				625ED6D61A0F5FA000F84CA9 /* MobileCoreServices.framework in Frameworks */,
+				625ED6D41A0F5F9900F84CA9 /* MessageUI.framework in Frameworks */,
+				625ED6D21A0F5F9200F84CA9 /* CoreMedia.framework in Frameworks */,
+				625ED6D01A0F5F8400F84CA9 /* AVFoundation.framework in Frameworks */,
+				625ED6CE1A0F5F7600F84CA9 /* AudioToolbox.framework in Frameworks */,
 				62528E2B1A0E4CFF00EF4CB4 /* CoreLocation.framework in Frameworks */,
 				62528E141A0DF16800EF4CB4 /* FacebookSDK.framework in Frameworks */,
+				625ED6CC1A0F5F0A00F84CA9 /* libPayPalMobile.a in Frameworks */,
 				795C924893BB9CA52BACFD24 /* libPods-HackSC2014.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +136,12 @@
 		4B9FE8646EEA63B83AC83C8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				625ED6D71A0F5FA800F84CA9 /* SystemConfiguration.framework */,
+				625ED6D51A0F5FA000F84CA9 /* MobileCoreServices.framework */,
+				625ED6D31A0F5F9900F84CA9 /* MessageUI.framework */,
+				625ED6D11A0F5F9200F84CA9 /* CoreMedia.framework */,
+				625ED6CF1A0F5F8400F84CA9 /* AVFoundation.framework */,
+				625ED6CD1A0F5F7600F84CA9 /* AudioToolbox.framework */,
 				62528E2A1A0E4CFF00EF4CB4 /* CoreLocation.framework */,
 				AE6AEEF68BA8B4879ACA293C /* libPods-HackSC2014.a */,
 			);
@@ -117,6 +151,7 @@
 		62528DD91A0DB8E900EF4CB4 = {
 			isa = PBXGroup;
 			children = (
+				625ED6C31A0F5F0A00F84CA9 /* PayPalMobile */,
 				620EDC661A0F37DF00BF3AC5 /* fontawesome-webfont.ttf */,
 				62528E131A0DF16800EF4CB4 /* FacebookSDK.framework */,
 				62528DE41A0DB8E900EF4CB4 /* HackSC2014 */,
@@ -196,6 +231,21 @@
 				62528E031A0DB8EA00EF4CB4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		625ED6C31A0F5F0A00F84CA9 /* PayPalMobile */ = {
+			isa = PBXGroup;
+			children = (
+				625ED6C41A0F5F0A00F84CA9 /* libPayPalMobile.a */,
+				625ED6C51A0F5F0A00F84CA9 /* PayPalConfiguration.h */,
+				625ED6C61A0F5F0A00F84CA9 /* PayPalFuturePaymentViewController.h */,
+				625ED6C71A0F5F0A00F84CA9 /* PayPalMobile.h */,
+				625ED6C81A0F5F0A00F84CA9 /* PayPalOAuthScopes.h */,
+				625ED6C91A0F5F0A00F84CA9 /* PayPalPayment.h */,
+				625ED6CA1A0F5F0A00F84CA9 /* PayPalPaymentViewController.h */,
+				625ED6CB1A0F5F0A00F84CA9 /* PayPalProfileSharingViewController.h */,
+			);
+			path = PayPalMobile;
 			sourceTree = "<group>";
 		};
 		8CADE375834ABD5F4C705F4B /* Pods */ = {
@@ -488,6 +538,10 @@
 				);
 				INFOPLIST_FILE = HackSC2014/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayPalMobile",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-l\"Pods-HackSC2014-MBProgressHUD\"",
@@ -504,6 +558,7 @@
 					"-framework",
 					"\"Sinch\"",
 					"$(inherited)",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -523,6 +578,10 @@
 				);
 				INFOPLIST_FILE = HackSC2014/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PayPalMobile",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-l\"Pods-HackSC2014-MBProgressHUD\"",
@@ -539,6 +598,7 @@
 					"-framework",
 					"\"Sinch\"",
 					"$(inherited)",
+					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
