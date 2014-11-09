@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [AppCommunication sharedManager].typeOfPerson = @"seller";
+    [AppCommunication sharedManager].didGetPastInitialViewController = true;
     [self.navigationItem setHidesBackButton:YES animated:YES];
     [AppCommunication sharedManager].sellerMyItems = [NSMutableArray array];
     // Do any additional setup after loading the view.
@@ -83,6 +85,7 @@
                             {
                                 
                                 NSLog(@"%@",fetchedData);
+                                [AppCommunication sharedManager].sellerMyItems = [NSMutableArray array];
                                 [AppCommunication sharedManager].sellerMyItems = [fetchedData[@"itemSet"] mutableCopy];
                                 [self performSegueWithIdentifier:@"items" sender:self];
                                 

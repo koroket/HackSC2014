@@ -28,8 +28,7 @@
     NSString* strFixedLat = [NSString stringWithFormat:@"%.1f",fixedLat];
     float fixedLongi = longi+.05;
     NSString* strFixedLongi = [NSString stringWithFormat:@"%.1f",fixedLongi];
-    NSLog(strFixedLat);
-    NSLog(strFixedLongi);
+
     return strFixedLat;
 }
 @end

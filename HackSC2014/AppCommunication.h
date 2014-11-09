@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "BuyerMapViewController.h"
 @interface AppCommunication : NSObject
 + (instancetype)sharedManager;
 -(NSString*)strLocationMakerWithLat:(float)lat withLongi:(float)longi;
@@ -19,4 +20,10 @@
 @property (nonatomic, strong) NSMutableArray* buyerMyItems;
 @property (nonatomic, strong) CLLocationManager* locationManager;
 @property (nonatomic, strong) CLLocation* myLocation;
+@property (nonatomic, strong) NSString* typeOfPerson;
+@property (nonatomic, strong) NSString* currentMapSellerFBID;
+@property (nonatomic, strong) NSString* currentLatitude;
+@property (nonatomic, strong) NSString* currentLongitude;
+@property (nonatomic, assign) bool didGetPastInitialViewController;
+@property (nonatomic, weak) BuyerMapViewController* buyerMapViewController;
 @end

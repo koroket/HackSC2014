@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-HackSC2014-SinchRTC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HackSC2014.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>79DB12098A6CE04A2BCABC2C</key>
+		<key>12071D4B003C862B0D322AF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BF7D322D13E159A940A3B5EC</key>
+		<key>EFCC80FA22E658D95DDAB047</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F50C448BAE5DC548D925C678</key>
 		<dict>
 			<key>primary</key>
 			<true/>

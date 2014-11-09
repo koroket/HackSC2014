@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <CoreLocation/CoreLocation.h>
-@interface LoginViewController : UIViewController<FBLoginViewDelegate,CLLocationManagerDelegate>
+#import <Sinch/Sinch.h>
+@interface LoginViewController : UIViewController<FBLoginViewDelegate,CLLocationManagerDelegate,SINMessageClientDelegate,SINClientDelegate>
 
 @end

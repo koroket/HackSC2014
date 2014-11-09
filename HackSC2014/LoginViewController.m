@@ -7,22 +7,97 @@
 //
 
 #import "LoginViewController.h"
-
+#import <Sinch/Sinch.h>
 #import "AppCommunication.h"
 #import <CoreLocation/CoreLocation.h>
 @interface LoginViewController ()
 - (IBAction)isBuyer:(id)sender;
 - (IBAction)isSeller:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *bizNameTextField;
-
+@property (nonatomic,strong) id<SINClient> sinchClient;
+@property (nonatomic,strong) id<SINMessageClient> messageClient;
 @end
 
 @implementation LoginViewController
 {
     bool gettingSellerAccount;
     bool gotLocations;
+    bool gotFacebook;
 }
-
+-(void)clientDidFail:(id<SINClient>)client error:(NSError *)error
+{
+    NSLog(@"fail");
+}
+-(void)clientDidStart:(id<SINClient>)client
+{
+    NSLog(@"start");
+}
+-(void)createClient
+{
+    // Instantiate a Sinch client object
+    self.sinchClient = [Sinch clientWithApplicationKey:@"a35750b5-c354-4264-b504-e3212d46d11f"
+                                     applicationSecret:@"d1Zj1Sz7W0ic2zU3iZOTgg=="
+                                       environmentHost:@"sandbox.sinch.com"
+                                                userId:[AppCommunication sharedManager].myFBID];
+    self.sinchClient.delegate = self;
+    [self.sinchClient setSupportMessaging:YES];
+    
+    
+    // Start the Sinch Client
+    [self.sinchClient start];
+    // Start listening for incoming events (calls and messages).
+    [self.sinchClient startListeningOnActiveConnection];
+    
+    [self.sinchClient setSupportMessaging: YES];
+    
+    self.messageClient = [self.sinchClient messageClient];
+    self.messageClient.delegate = self;
+    
+    
+    
+    
+    
+    
+}
+- (void) messageDeliveryFailed:(id<SINMessage>) message info:(NSArray *)messageFailureInfo {
+    for (id<SINMessageFailureInfo> reason in messageFailureInfo) {
+        NSLog(@"Delivering message with id %@ failed to user %@. Reason %@",
+              reason.messageId, reason.recipientId, [reason.error localizedDescription]);
+    }
+}
+-(void)sendSinchTo:(NSString*) theirId fromID:(NSString*)myid withLatitude:(double)lati withLongitude:(double)longi
+{
+    NSString* sendingString = [NSString stringWithFormat:@"%@/%f/%f",myid,lati,longi];
+    SINOutgoingMessage *message = [SINOutgoingMessage messageWithRecipient:theirId text:sendingString];
+    [self.messageClient sendMessage:message];
+}
+-(void)messageDelivered:(id<SINMessageDeliveryInfo>)info
+{
+    NSLog(@"Message Delivered");
+}
+-(void)messageFailed:(id<SINMessage>)message info:(id<SINMessageFailureInfo>)messageFailureInfo
+{
+    NSLog(@"Message Failed");
+}
+-(void)messageClient:(id<SINMessageClient>)messageClient didReceiveIncomingMessage:(id<SINMessage>)message
+{
+    [self breakSinch:message.text];
+}
+-(void)messageSent:(id<SINMessage>)message recipientId:(NSString *)recipientId
+{
+    NSLog(@"Message Sent");
+}
+-(void)breakSinch:(NSString*)yourString
+{
+    NSArray* temparray = [yourString componentsSeparatedByString:@"/"];
+    if([AppCommunication sharedManager].buyerMapViewController!=nil)
+    {
+        if([(NSString*)temparray[0] isEqualToString:[AppCommunication sharedManager].currentMapSellerFBID])
+        {
+            [[AppCommunication sharedManager].buyerMapViewController updateMapWithLatitude:((NSString*)temparray[1]).doubleValue andWithLongitude:((NSString*)temparray[2]).doubleValue];
+        }
+    }
+}
 - (void)startStandardUpdates
 {
     
@@ -57,21 +132,41 @@
     CLLocation *newLocation = [locations lastObject];
     
 
-            NSString *latitude, *longitude, *state, *country;
+            NSString *latitude, *longitude;
             
             latitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
             longitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
     [AppCommunication sharedManager].myLocation = newLocation;
     [[AppCommunication sharedManager] strLocationMakerWithLat:newLocation.coordinate.latitude withLongi:newLocation.coordinate.longitude];
     
+    if([AppCommunication sharedManager].didGetPastInitialViewController)
+    {
+        if([[AppCommunication sharedManager].typeOfPerson isEqualToString:@"buyer"])
+        {
+            if([AppCommunication sharedManager].buyerMySellers!=nil)
+            {
+                for(int i = 0; i < [AppCommunication sharedManager].buyerMySellers.count;i++)
+                {
+                    NSDictionary* temp = [AppCommunication sharedManager].buyerMySellers[i];
+                    [self sendSinchTo:temp[@"fbid"] fromID:[AppCommunication sharedManager].myFBID withLatitude:[AppCommunication sharedManager].myLocation.coordinate.latitude withLongitude:[AppCommunication sharedManager].myLocation.coordinate.longitude];
+                }
+            }
+        }
+        else
+        {
+        
+        }
+    }
     if(!gotLocations)
     {
         gotLocations=true;
         if([AppCommunication sharedManager].myFBID!=nil)
         {
             [self getSellerAccount];
+            [self createClient];
         }
     }
+    
     
 
 }
@@ -97,9 +192,14 @@
     //call the singleton for string data
     [AppCommunication sharedManager].myFBID = user.objectID;
     [AppCommunication sharedManager].myFBName = user.name;
-    if([AppCommunication sharedManager].myLocation!=nil)
+    if(!gotFacebook)
     {
+        gotFacebook=true;
+        if([AppCommunication sharedManager].myLocation!=nil)
+        {
             [self getSellerAccount];
+            [self createClient];
+        }
     }
 }
 

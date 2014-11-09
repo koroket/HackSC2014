@@ -10,5 +10,6 @@
 #import <MapKit/MapKit.h>
 
 @interface BuyerMapViewController : UIViewController <MKMapViewDelegate>
+-(void)updateMapWithLatitude:(double) lati andWithLongitude:(double) longi;
 
 @end

@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 //#import "SellerItem.h"
 @interface SellerItemsTableViewController ()
+@property (nonatomic, strong) NSMutableArray* trying;
 - (IBAction)uploadItemSet:(id)sender;
 - (IBAction)addCategory:(id)sender;
 @end
@@ -23,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.trying = [AppCommunication sharedManager].sellerMyItems;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -40,7 +42,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
+
     return [AppCommunication sharedManager].sellerMyItems.count;
+    
 }
 
 
@@ -162,8 +166,13 @@
     NSMutableDictionary* newItem = [NSMutableDictionary dictionary];
     newItem[@"itemType"] = @"Category";
     newItem[@"name"] = @"";
-    [[AppCommunication sharedManager].sellerMyItems addObject:newItem];
+    [self.trying addObject:newItem];
+        NSLog(@"%d",self.trying.count);
+
+    [AppCommunication sharedManager].sellerMyItems = self.trying;
     [self.tableView reloadData];
+    NSLog(@"%d",self.trying.count);
+    
 }
 
 - (void)updateItemSet

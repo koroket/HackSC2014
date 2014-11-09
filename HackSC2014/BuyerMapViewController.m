@@ -18,12 +18,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [AppCommunication sharedManager].buyerMapViewController = self;
     [_mapView setDelegate:self];
     _mapView.showsUserLocation = YES;
-    [self didUpdateUserLocation];
+    
+    [self didUpdateUserLocation:[AppCommunication sharedManager].currentLatitude.doubleValue andWithLongitude:[AppCommunication sharedManager].currentLongitude.doubleValue];
 }
--(void)didUpdateUserLocation
+-(void)updateMapWithLatitude:(double)lati andWithLongitude:(double)longi
+{
+    [self didUpdateUserLocation:lati andWithLongitude:longi];
+}
+-(void)didUpdateUserLocation:(double)lati andWithLongitude:(double)longi
 {
     MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
     MKCoordinateRegion region = MKCoordinateRegionMake([AppCommunication sharedManager].myLocation.coordinate, span);
@@ -32,7 +37,8 @@
     
     [_mapView setCenterCoordinate:[AppCommunication sharedManager].myLocation.coordinate animated:YES];
     
-    NSString *baseUrl = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=true", [AppCommunication sharedManager].myLocation.coordinate.latitude,  [AppCommunication sharedManager].myLocation.coordinate.longitude,[AppCommunication sharedManager].myLocation.coordinate.latitude+.5,[AppCommunication sharedManager].myLocation.coordinate.longitude+.5];
+    NSString *baseUrl = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=true", [AppCommunication sharedManager].myLocation.coordinate.latitude,  [AppCommunication sharedManager].myLocation.coordinate.longitude,lati
+                         ,longi];
     
     NSURL *url = [NSURL URLWithString:[baseUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     

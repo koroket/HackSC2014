@@ -16,7 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [AppCommunication sharedManager].typeOfPerson = @"buyer";
+    [AppCommunication sharedManager].didGetPastInitialViewController = true;
     [self.navigationItem setHidesBackButton:YES animated:YES];
+    
     [AppCommunication sharedManager].buyerMySellers = [NSMutableArray array];
     [self getMySellers];
     // Uncomment the following line to preserve selection between presentations.
@@ -99,6 +102,7 @@
 {
     NSString *fixedUrl = [NSString stringWithFormat:@"https://powerful-waters-4317.herokuapp.com/buyer/itemSet/%@",
                           ((NSDictionary*)[AppCommunication sharedManager].buyerMySellers[index])[@"fbid"]];
+    [AppCommunication sharedManager].currentMapSellerFBID = ((NSDictionary*)[AppCommunication sharedManager].buyerMySellers[index])[@"fbid"];
     NSURL *url = [NSURL URLWithString:fixedUrl];
     // Request
     NSMutableURLRequest *request =
@@ -125,7 +129,9 @@
              dispatch_async(dispatch_get_main_queue(), ^(void)
                             {
                                 
-                                NSLog(@"%@",fetchedData);
+                                NSLog(@"%@",(NSDictionary*)[AppCommunication sharedManager].buyerMySellers[index]);
+                                [AppCommunication sharedManager].currentLatitude=((NSDictionary*)[AppCommunication sharedManager].buyerMySellers[index])[@"latitude"];
+                                [AppCommunication sharedManager].currentLongitude=((NSDictionary*)[AppCommunication sharedManager].buyerMySellers[index])[@"longitude"];
                                 [AppCommunication sharedManager].buyerMyItems = [fetchedData[@"itemSet"] mutableCopy];
                                 [self performSegueWithIdentifier:@"item" sender:self];
                                 
