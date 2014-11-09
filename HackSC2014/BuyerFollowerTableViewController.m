@@ -9,6 +9,7 @@
 #import "BuyerFollowerTableViewController.h"
 #import "AppCommunication.h"
 @interface BuyerFollowerTableViewController ()
+- (IBAction)searchButtonPressed:(id)sender;
 
 @end
 
@@ -155,4 +156,7 @@
     
 }
 
+- (IBAction)searchButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"settings" sender:self];
+}
 @end

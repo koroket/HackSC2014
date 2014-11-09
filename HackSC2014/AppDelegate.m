@@ -55,7 +55,7 @@
     [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     [PayPalMobile initializeWithClientIdsForEnvironments:@{PayPalEnvironmentSandbox : @"ATu-vxD88L-PDP6FejfApTDlkrbW-quBnkujnMbjfy6kcOtwbM1VnRHBF1v5"}];
-    [Venmo startWithAppId:@"2073" secret:@"E9W6dpgV2wCc5Uy2TzTWgPVzxRScsTqZ" name:@"PaySplit"];
+    [Venmo startWithAppId:@"2087" secret:@"95jyfg839sAWjWPS5tgfN2nQLRn3PmF8" name:@"DeliBird"];
     return YES;
 }
 
