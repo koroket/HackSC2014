@@ -10,6 +10,7 @@
 #import "AppCommunication.h"
 @interface BuyerMapViewController ()
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+- (IBAction)PayPressed:(id)sender;
 
 @end
 
@@ -167,4 +168,7 @@
 }
 */
 
+- (IBAction)PayPressed:(id)sender {
+    [self performSegueWithIdentifier:@"Pay" sender:self];
+}
 @end

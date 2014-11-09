@@ -1,7 +1,7 @@
 FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/SinchRTC"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/SinchRTC"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/SinchRTC"
-OTHER_LDFLAGS = -ObjC -l"Pods-HackSC2014-MBProgressHUD" -l"Pods-HackSC2014-SinchRTC" -l"stdc++.6.0.9" -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "Security" -framework "Sinch"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CMDQueryStringSerialization" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/SSKeychain" "${PODS_ROOT}/Headers/Public/SinchRTC" "${PODS_ROOT}/Headers/Public/VENCore" "${PODS_ROOT}/Headers/Public/Venmo-iOS-SDK"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CMDQueryStringSerialization" -isystem "${PODS_ROOT}/Headers/Public/MBProgressHUD" -isystem "${PODS_ROOT}/Headers/Public/SSKeychain" -isystem "${PODS_ROOT}/Headers/Public/SinchRTC" -isystem "${PODS_ROOT}/Headers/Public/VENCore" -isystem "${PODS_ROOT}/Headers/Public/Venmo-iOS-SDK"
+OTHER_LDFLAGS = -ObjC -l"Pods-HackSC2014-CMDQueryStringSerialization" -l"Pods-HackSC2014-MBProgressHUD" -l"Pods-HackSC2014-SSKeychain" -l"Pods-HackSC2014-SinchRTC" -l"Pods-HackSC2014-VENCore" -l"Pods-HackSC2014-Venmo-iOS-SDK" -l"stdc++.6.0.9" -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreGraphics" -framework "Foundation" -framework "Security" -framework "Sinch"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

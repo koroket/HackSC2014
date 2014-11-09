@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFCC80FA22E658D95DDAB047"
+               BlueprintIdentifier = "719E6F1FF80423941AA59E09"
                BuildableName = "libPods-HackSC2014-SinchRTC.a"
                BlueprintName = "Pods-HackSC2014-SinchRTC"
                ReferencedContainer = "container:Pods.xcodeproj">

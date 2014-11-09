@@ -52,7 +52,7 @@
     // Change the appearance of other navigation button
     UIImage *barButtonImage = [[UIImage imageNamed:@"button_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
     [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
+    [Venmo startWithAppId:@"2073" secret:@"E9W6dpgV2wCc5Uy2TzTWgPVzxRScsTqZ" name:@"PaySplit"];
     return YES;
 }
 
@@ -85,7 +85,9 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    // attempt to extract a token from the url
+    if ([[Venmo sharedInstance] handleOpenURL:url]) {
+        return YES;
+    }
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 

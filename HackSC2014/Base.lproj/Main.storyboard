@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49H-oE-A8u">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -386,7 +385,7 @@
             </objects>
             <point key="canvasLocation" x="1196" y="563"/>
         </scene>
-        <!--Buyer Map View Controller-->
+        <!--Merchant's Location-->
         <scene sceneID="rtJ-ii-EsY">
             <objects>
                 <viewController id="end-qu-fbw" customClass="BuyerMapViewController" sceneMemberID="viewController">
@@ -399,7 +398,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UIj-fq-btP">
-                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                                <rect key="frame" x="16" y="50" width="568" height="550"/>
                                 <connections>
                                     <outlet property="delegate" destination="end-qu-fbw" id="tx6-er-udj"/>
                                 </connections>
@@ -408,18 +407,88 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="UIj-fq-btP" secondAttribute="trailing" id="BA8-WA-4US"/>
-                            <constraint firstItem="UIj-fq-btP" firstAttribute="top" secondItem="EOg-Qm-egA" secondAttribute="topMargin" id="PGD-AE-EkS"/>
+                            <constraint firstItem="UIj-fq-btP" firstAttribute="top" secondItem="EOg-Qm-egA" secondAttribute="topMargin" constant="50" id="PGD-AE-EkS"/>
                             <constraint firstItem="UIj-fq-btP" firstAttribute="leading" secondItem="EOg-Qm-egA" secondAttribute="leadingMargin" id="aFU-N9-Nt3"/>
                             <constraint firstItem="A2x-Vg-Vyk" firstAttribute="top" secondItem="UIj-fq-btP" secondAttribute="bottom" id="hii-KK-aFl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Merchant's Location" id="MC9-eM-Gwr">
+                        <barButtonItem key="rightBarButtonItem" title="Payments" id="vOR-9k-s4G">
+                            <connections>
+                                <action selector="PayPressed:" destination="end-qu-fbw" id="AEL-V8-bpa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="UIj-fq-btP" id="hp4-tt-4Vb"/>
+                        <segue destination="HBw-6s-mhM" kind="show" identifier="Pay" id="RMO-2g-LAE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xVF-bA-Xl4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="563"/>
+            <point key="canvasLocation" x="1780" y="602"/>
+        </scene>
+        <!--Payment View Controller-->
+        <scene sceneID="ip5-j0-wsS">
+            <objects>
+                <viewController id="HBw-6s-mhM" customClass="PaymentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bf4-E4-c1f"/>
+                        <viewControllerLayoutGuide type="bottom" id="UtQ-1S-Sk8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tN4-wg-2bS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ts7-GX-USi">
+                                <rect key="frame" x="66" y="400" width="468" height="150"/>
+                                <color key="backgroundColor" red="0.18303002502797591" green="0.42532012838803612" blue="0.89101988077163696" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="ymQ-tM-2nQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="PayPal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="paypalPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="CQf-MM-zZg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5C-Z9-KrH">
+                                <rect key="frame" x="66" y="114" width="468" height="150"/>
+                                <color key="backgroundColor" red="0.52653333918506084" green="0.89612680540330991" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="oPa-Lb-HsK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="Venmo">
+                                    <color key="titleColor" red="0.0052993330733509423" green="0.0090191333850580639" blue="0.010064572704081676" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="venmoPressed:" destination="HBw-6s-mhM" eventType="touchUpInside" id="wbZ-5t-kyQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ts7-GX-USi" firstAttribute="leading" secondItem="tN4-wg-2bS" secondAttribute="leadingMargin" constant="50" id="FMM-fC-qfs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p5C-Z9-KrH" secondAttribute="trailing" constant="50" id="SIM-At-MDo"/>
+                            <constraint firstItem="p5C-Z9-KrH" firstAttribute="top" secondItem="Bf4-E4-c1f" secondAttribute="bottom" constant="50" id="ZZP-gd-Zmh"/>
+                            <constraint firstItem="UtQ-1S-Sk8" firstAttribute="top" secondItem="Ts7-GX-USi" secondAttribute="bottom" constant="50" id="bdg-8K-vcF"/>
+                            <constraint firstItem="p5C-Z9-KrH" firstAttribute="leading" secondItem="tN4-wg-2bS" secondAttribute="leadingMargin" constant="50" id="nQw-Ig-Yk2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ts7-GX-USi" secondAttribute="trailing" constant="50" id="rPF-ue-b1o"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="paypalButton" destination="Ts7-GX-USi" id="vpv-lt-dCk"/>
+                        <outlet property="venmoButton" destination="p5C-Z9-KrH" id="q1j-3o-VUv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mws-Ae-XBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2442" y="587"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FLs-MK-TP9">

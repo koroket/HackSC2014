@@ -1,6 +1,6 @@
 #include "Pods-HackSC2014-SinchRTC.xcconfig"
 FRAMEWORK_SEARCH_PATHS = ${PODS_HACKSC_____SINCHRTC_FRAMEWORK_SEARCH_PATHS}
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/SinchRTC" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/SinchRTC"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/SinchRTC" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CMDQueryStringSerialization" "${PODS_ROOT}/Headers/Public/MBProgressHUD" "${PODS_ROOT}/Headers/Public/SSKeychain" "${PODS_ROOT}/Headers/Public/SinchRTC" "${PODS_ROOT}/Headers/Public/VENCore" "${PODS_ROOT}/Headers/Public/Venmo-iOS-SDK"
 OTHER_LDFLAGS = ${PODS_HACKSC_____SINCHRTC_OTHER_LDFLAGS} -ObjC
 PODS_ROOT = ${SRCROOT}

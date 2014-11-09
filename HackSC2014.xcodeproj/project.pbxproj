@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		620EDC671A0F37DF00BF3AC5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 620EDC661A0F37DF00BF3AC5 /* fontawesome-webfont.ttf */; };
+		620EDC6A1A0F57FB00BF3AC5 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 620EDC691A0F57FB00BF3AC5 /* PaymentViewController.m */; };
 		624ABA261A0F0CCE00354E2E /* SellerContactsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 624ABA251A0F0CCE00354E2E /* SellerContactsTableViewController.m */; };
 		62528DE81A0DB8E900EF4CB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DE71A0DB8E900EF4CB4 /* main.m */; };
 		62528DEB1A0DB8E900EF4CB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62528DEA1A0DB8E900EF4CB4 /* AppDelegate.m */; };
@@ -43,6 +44,8 @@
 /* Begin PBXFileReference section */
 		46217EFA0426F393B12149CD /* Pods-HackSC2014.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackSC2014.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackSC2014/Pods-HackSC2014.release.xcconfig"; sourceTree = "<group>"; };
 		620EDC661A0F37DF00BF3AC5 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		620EDC681A0F57FB00BF3AC5 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		620EDC691A0F57FB00BF3AC5 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		624ABA241A0F0CCE00354E2E /* SellerContactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellerContactsTableViewController.h; sourceTree = "<group>"; };
 		624ABA251A0F0CCE00354E2E /* SellerContactsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellerContactsTableViewController.m; sourceTree = "<group>"; };
 		62528DE21A0DB8E900EF4CB4 /* HackSC2014.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackSC2014.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				62528DF21A0DB8E900EF4CB4 /* Main.storyboard */,
+				620EDC681A0F57FB00BF3AC5 /* PaymentViewController.h */,
+				620EDC691A0F57FB00BF3AC5 /* PaymentViewController.m */,
 				62528E181A0E196200EF4CB4 /* SellerSettingsViewController.h */,
 				62528E191A0E196200EF4CB4 /* SellerSettingsViewController.m */,
 				62528E1B1A0E1E1600EF4CB4 /* SellerItemsTableViewController.h */,
@@ -344,6 +349,7 @@
 				62528E231A0E485600EF4CB4 /* BuyerItemsTableViewController.m in Sources */,
 				62633BC01A0EB74F006D32C2 /* BuyerMapViewController.m in Sources */,
 				62528E101A0DEFD700EF4CB4 /* LoginViewController.m in Sources */,
+				620EDC6A1A0F57FB00BF3AC5 /* PaymentViewController.m in Sources */,
 				624ABA261A0F0CCE00354E2E /* SellerContactsTableViewController.m in Sources */,
 				62633BBD1A0E84E0006D32C2 /* BuyerFindSellerViewController.m in Sources */,
 				62528E291A0E4A3600EF4CB4 /* BuyerSettingViewController.m in Sources */,

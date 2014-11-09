@@ -4,12 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-HackSC2014-CMDQueryStringSerialization.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HackSC2014-MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-HackSC2014-SSKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HackSC2014-SinchRTC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HackSC2014-VENCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HackSC2014-Venmo-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>12071D4B003C862B0D322AF6</key>
+		<key>23A994BA5778F6749A8A19E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EFCC80FA22E658D95DDAB047</key>
+		<key>7083B2F282FE0F43EC70848D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F50C448BAE5DC548D925C678</key>
+		<key>719E6F1FF80423941AA59E09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7A926FD180249DBBC244138E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>918BE4DEAF97D2CB4037C6A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF15315FA4F5FE74B3E6A2F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F33678F1C2F24C40D5B87B73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
